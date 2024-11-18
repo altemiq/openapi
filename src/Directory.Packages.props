@@ -1,0 +1,19 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup Label="Analyzers">
+    <GlobalPackageReference Include="Altemiq.DotNet.CodingStandard" Version="1.0.47" />
+  </ItemGroup>
+
+  <ItemGroup Label="Build">
+    <GlobalPackageReference Include="Altemiq.SemanticVersioning.MSBuild" Version="2.1.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="7.0.0" />
+  </ItemGroup>
+
+</Project>

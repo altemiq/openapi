@@ -1,6 +1,12 @@
+// -----------------------------------------------------------------------
+// <copyright file="Program.cs" company="Altemiq">
+// Copyright (c) Altemiq. All rights reserved.
+// </copyright>
+// -----------------------------------------------------------------------
+
 using Microsoft.AspNetCore.OpenApi;
 
-const string PathBase = "/api"; 
+const string PathBase = "/api";
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,11 +25,11 @@ builder.Services.AddOpenApi(options =>
                 Scopes =
                 {
                     ["first"] = "First Scope",
-                    ["second"]= "Second Scope",
-                    ["third"]= "Third Scope",
-                    ["forth"]= "Forth Scope"
-                }
-            }
+                    ["second"] = "Second Scope",
+                    ["third"] = "Third Scope",
+                    ["forth"] = "Forth Scope",
+                },
+            },
         });
     options.WithAuthorizeCheck(scheme);
     options.UsePathBase(PathBase);
@@ -40,7 +46,7 @@ if (app.Environment.IsDevelopment())
 app.UsePathBase(PathBase);
 
 app
-    .MapGet($"minimal/{nameof(OpenApi.Web.WeatherForecast)}", OpenApi.Web.WeatherForecast.Get)
+    .MapGet($"minimal/{nameof(Altemiq.OpenApi.Web.WeatherForecast)}", Altemiq.OpenApi.Web.WeatherForecast.Get)
     .RequireAuthorization()
     .WithScopes("first", "second");
 
@@ -52,4 +58,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-app.Run();
+await app.RunAsync().ConfigureAwait(false);

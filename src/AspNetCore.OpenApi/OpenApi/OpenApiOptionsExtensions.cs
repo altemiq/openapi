@@ -47,8 +47,8 @@ public static class OpenApiOptionsExtensions
 
                 static string? GetVersionFromEntryAssembly()
                 {
-                    return System.Reflection.Assembly.GetEntryAssembly() is { } assembly && assembly.GetCustomAttributes(inherit: false) is { Length: > 0 } attributes && GetVersionFromAttributes(attributes) is { } version
-                        ? version
+                    return System.Reflection.Assembly.GetEntryAssembly()?.GetCustomAttributes(inherit: false) is { Length: > 0 } attributes
+                        ? GetVersionFromAttributes(attributes)
                         : default;
 
                     static string? GetVersionFromAttributes(object[] attributes)
@@ -223,7 +223,7 @@ public static class OpenApiOptionsExtensions
         });
 
     /// <summary>
-    /// Adds a check for <see cref="IAuthorizeData"/> and adds the specified scheme.
+    /// Adds a check for <see cref="Authorization.IAuthorizeData"/> and adds the specified scheme.
     /// </summary>
     /// <param name="options">The options.</param>
     /// <param name="name">The authentication scheme.</param>
@@ -232,7 +232,7 @@ public static class OpenApiOptionsExtensions
         options.WithAuthorizeCheck(() => new OpenApiSecurityScheme { Reference = new OpenApiReference { Id = name } });
 
     /// <summary>
-    /// Adds a check for <see cref="IAuthorizeData"/> and adds the specified scheme.
+    /// Adds a check for <see cref="Authorization.IAuthorizeData"/> and adds the specified scheme.
     /// </summary>
     /// <param name="options">The options.</param>
     /// <param name="schemeReference">The security scheme reference.</param>
@@ -241,7 +241,7 @@ public static class OpenApiOptionsExtensions
         options.WithAuthorizeCheck(() => new OpenApiSecurityScheme { Reference = schemeReference });
 
     /// <summary>
-    /// Adds a check for <see cref="IAuthorizeData"/> and adds the specified scheme.
+    /// Adds a check for <see cref="Authorization.IAuthorizeData"/> and adds the specified scheme.
     /// </summary>
     /// <param name="options">The options.</param>
     /// <param name="securityScheme">The authentication scheme.</param>

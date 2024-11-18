@@ -1,0 +1,25 @@
+<Project>
+
+  <PropertyGroup>
+    <NeutralLanguage>en</NeutralLanguage>
+    <LangVersion>preview</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+
+    <!-- Nullable -->
+    <Nullable>enable</Nullable>
+
+    <!-- Packages lock file -->
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+  </PropertyGroup>
+
+  <PropertyGroup Label=".NET Analyzers">
+    <AnalysisLevel>preview</AnalysisLevel>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <WarnOnPackingNonPackableProject>false</WarnOnPackingNonPackableProject>
+  </PropertyGroup>
+
+</Project>
