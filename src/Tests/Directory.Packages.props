@@ -1,0 +1,18 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="Microsoft.Testing.Extensions.CodeCoverage" Version="17.12.6" />
+    <PackageVersion Include="TUnit" Version="0.3.31" />
+    <PackageVersion Include="Microsoft.Extensions.DependencyInjection" Version="9.0.0" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="TUnit" />
+    <Using Include="TUnit" />
+  </ItemGroup>
+
+</Project>

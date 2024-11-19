@@ -1,0 +1,22 @@
+﻿<Project>
+
+  <PropertyGroup>
+    <Company>Altavec</Company>
+    <RootNamespace>Microsoft.$(MSBuildProjectName.Replace('.Tests', ''))</RootNamespace>
+    <AssemblyName>$(Company).$(MSBuildProjectName)</AssemblyName>
+
+    <LangVersion>latest</LangVersion>
+    <ImplicitUsings>enable</ImplicitUsings>
+
+    <!-- Nullable -->
+    <Nullable>enable</Nullable>
+
+    <IsPublishable>false</IsPublishable>
+    <IsPackable>false</IsPackable>
+    <IsTestProject>true</IsTestProject>
+
+    <!-- Packages lock file -->
+    <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
+  </PropertyGroup>
+
+</Project>

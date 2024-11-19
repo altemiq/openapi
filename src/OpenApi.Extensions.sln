@@ -16,6 +16,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		nuget.config = nuget.config
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{1DF62DF2-25FD-41D0-9D09-1A4CAC792EA7}"
+	ProjectSection(SolutionItems) = preProject
+		Tests\Directory.Build.props = Tests\Directory.Build.props
+		Tests\Directory.Build.targets = Tests\Directory.Build.targets
+		Tests\Directory.Packages.props = Tests\Directory.Packages.props
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AspNetCore.OpenApi.Tests", "Tests\AspNetCore.OpenApi.Tests\AspNetCore.OpenApi.Tests.csproj", "{1B87BEA8-8C86-4D68-AC27-7547B58A0FE4}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -30,8 +39,15 @@ Global
 		{9E86702D-C82C-4E75-817A-2DDE52C62021}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9E86702D-C82C-4E75-817A-2DDE52C62021}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9E86702D-C82C-4E75-817A-2DDE52C62021}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1B87BEA8-8C86-4D68-AC27-7547B58A0FE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1B87BEA8-8C86-4D68-AC27-7547B58A0FE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1B87BEA8-8C86-4D68-AC27-7547B58A0FE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1B87BEA8-8C86-4D68-AC27-7547B58A0FE4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{1B87BEA8-8C86-4D68-AC27-7547B58A0FE4} = {1DF62DF2-25FD-41D0-9D09-1A4CAC792EA7}
 	EndGlobalSection
 EndGlobal

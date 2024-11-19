@@ -4,12 +4,6 @@ on:
   push:
     branches: 
       - main
-    paths-ignore:
-      - docs/**
-      - .github/workflows/docs.yml
-  pull_request:
-    branches:
-      - main
   workflow_dispatch:
 
 env:
@@ -72,11 +66,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v4
       with:
-        dotnet-version: |
-          6.0.x
-          7.0.x
-          8.0.x
-          9.0.x
+        dotnet-version: 9.0.x
         source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
         config-file: ${{ github.workspace }}/src/nuget.config
       env:
@@ -84,18 +74,17 @@ jobs:
 
     # Test
     - name: Test with dotnet
-      working-directory: ${{ github.workspace }}/src
+      working-directory: ${{ github.workspace }}/src/Tests/AspNetCore.OpenApi.Tests
       run: >
-        dotnet test
-        --logger GitHubActions
-        --collect "XPlat code coverage"
+        dotnet run
         --results-directory ${{ github.workspace }}/coverage/results
-        -- RunConfiguration.CollectSourceInformation=true
+        --coverage
+        --coverage-output-format cobertura
 
     - name: Report Generator
       uses: danielpalme/ReportGenerator-GitHub-Action@v5
       with:
-        reports: '${{ github.workspace }}/coverage/results/*/coverage.cobertura.xml'
+        reports: '${{ github.workspace }}/coverage/results/*.cobertura.xml'
         targetdir: '${{ github.workspace }}/coverage/reports'
         reporttypes: 'HtmlInline;Cobertura;MarkdownSummaryGithub'
         verbosity: 'Verbose'
