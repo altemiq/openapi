@@ -72,7 +72,7 @@ public static class OpenApiOptionsExtensions
     /// <param name="options">The options.</param>
     /// <param name="pathBase">The path base.</param>
     /// <returns>The input options.</returns>
-    public static OpenApiOptions UsePathBase(this OpenApiOptions options, string pathBase) => options.AddDocumentTransformer(
+    public static OpenApiOptions UsePathBase(this OpenApiOptions options, Http.PathString pathBase) => options.AddDocumentTransformer(
         (document, _, _) =>
         {
             document.Servers.Clear();
