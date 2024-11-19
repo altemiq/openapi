@@ -1,7 +1,7 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <Company>Altavec</Company>
+    <Company>Altemiq</Company>
     <RootNamespace>Microsoft.$(MSBuildProjectName.Replace('.Tests', ''))</RootNamespace>
     <AssemblyName>$(Company).$(MSBuildProjectName)</AssemblyName>
 

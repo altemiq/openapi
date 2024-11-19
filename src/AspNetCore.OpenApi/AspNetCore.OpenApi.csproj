@@ -9,7 +9,15 @@
 
   <PropertyGroup>
     <Authors>rsking</Authors>
+    <Description>Altemiq ASP.NET Core OpenAPI assemblies</Description>
+    <PackageTags>aspnetcore;openapi</PackageTags>
+    <_ReadmeFile>readme.md</_ReadmeFile>
+    <PackageReadmeFile Condition="Exists('$(_ReadmeFile)')">$(_ReadmeFile)</PackageReadmeFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="$(_ReadmeFile)" Pack="true" PackagePath="\" Condition=" '$(PackageReadmeFile)' != '' " />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.OpenApi" VersionOverride="9.0.0" />
