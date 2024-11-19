@@ -12,11 +12,14 @@
     <Description>Altemiq ASP.NET Core OpenAPI assemblies</Description>
     <PackageTags>aspnetcore;openapi</PackageTags>
     <_ReadmeFile>readme.md</_ReadmeFile>
+    <_IconFile>icon.png</_IconFile>
     <PackageReadmeFile Condition="Exists('$(_ReadmeFile)')">$(_ReadmeFile)</PackageReadmeFile>
+    <PackageIcon Condition="Exists('$(_IconFile)')">$(_IconFile)</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="$(_ReadmeFile)" Pack="true" PackagePath="\" Condition=" '$(PackageReadmeFile)' != '' " />
+    <None Include="$(_IconFile)" Pack="true" PackagePath="\" Condition=" '$(PackageIcon)' != '' " />
   </ItemGroup>
 
   <ItemGroup>
