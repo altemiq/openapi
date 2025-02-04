@@ -2,14 +2,16 @@
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using System.Xml.Linq;
 
 public class OpenApiOptionsExtensionsTests
 {
-    const string DocumentName = "v1";
+    private const string DocumentName = "v1";
 
     [Test]
-    public async Task DefaultTitle() => await TestTitle(typeof(OpenApiOptionsExtensionsTests).Assembly.GetName().Name, options => { });
+    public async Task DefaultTitle()
+    {
+        await TestTitle(typeof(OpenApiOptionsExtensionsTests).Assembly.GetName().Name, options => { });
+    }
 
     [Test]
     public async Task SetTitle()
@@ -21,34 +23,34 @@ public class OpenApiOptionsExtensionsTests
     [Test]
     public async Task AddOpenIdConnect()
     {
-        var document = await GetOpenApiDocument(options => options.AddOpenIdConnect("http://localhost"));
-        await Assert.That(document.Components.SecuritySchemes).IsNotEmpty();
+        Microsoft.OpenApi.Models.OpenApiDocument document = await GetOpenApiDocument(options => options.AddOpenIdConnect("http://localhost"));
+        _ = await Assert.That(document.Components.SecuritySchemes).IsNotEmpty();
     }
 
     private static async Task TestTitle(string? name, Action<OpenApiOptions> configure)
     {
-        var document = await GetOpenApiDocument(configure);
+        Microsoft.OpenApi.Models.OpenApiDocument document = await GetOpenApiDocument(configure);
 
-        await Assert.That(document.Info.Title).IsEqualTo($"{name} | {DocumentName}");
+        _ = await Assert.That(document.Info.Title).IsEqualTo($"{name} | {DocumentName}");
     }
 
     private static async Task<Microsoft.OpenApi.Models.OpenApiDocument> GetOpenApiDocument(Action<OpenApiOptions> configure)
     {
-        var builder = WebApplication.CreateBuilder();
-        builder.Services.AddOpenApi(DocumentName, configure);
+        WebApplicationBuilder builder = WebApplication.CreateBuilder();
+        _ = builder.Services.AddOpenApi(DocumentName, configure);
 
-        var application = builder.Build();
+        WebApplication application = builder.Build();
 
         return await GetOpenApiDocument(application.Services, DocumentName);
 
         static async Task<Microsoft.OpenApi.Models.OpenApiDocument> GetOpenApiDocument(IServiceProvider serviceProvider, string documentName)
         {
             // get the keyed service
-            var documentServiceType = typeof(OpenApiOptions).Assembly.GetType("Microsoft.AspNetCore.OpenApi.OpenApiDocumentService") ?? throw new InvalidOperationException();
-            var service = serviceProvider.GetKeyedServices(documentServiceType, documentName).First();
+            Type documentServiceType = typeof(OpenApiOptions).Assembly.GetType("Microsoft.AspNetCore.OpenApi.OpenApiDocumentService") ?? throw new InvalidOperationException();
+            object? service = serviceProvider.GetKeyedServices(documentServiceType, documentName).First();
 
-            var method = documentServiceType.GetMethod("GetOpenApiDocumentAsync")!;
-            var task = (Task<Microsoft.OpenApi.Models.OpenApiDocument>)method.Invoke(service, [serviceProvider, CancellationToken.None])!;
+            System.Reflection.MethodInfo method = documentServiceType.GetMethod("GetOpenApiDocumentAsync")!;
+            Task<Microsoft.OpenApi.Models.OpenApiDocument> task = (Task<Microsoft.OpenApi.Models.OpenApiDocument>)method.Invoke(service, [serviceProvider, CancellationToken.None])!;
 
             return await task;
         }

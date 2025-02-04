@@ -294,7 +294,7 @@ public static class OpenApiOptionsExtensions
         };
 
         configure?.Invoke(securityScheme);
-        options.AddSecurityScheme(securityScheme);
+        _ = options.AddSecurityScheme(securityScheme);
         return securityScheme;
     }
 
