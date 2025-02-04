@@ -201,20 +201,21 @@ public static class OpenApiOptionsExtensions
     /// <param name="options">The options.</param>
     /// <returns>The input options.</returns>
     public static OpenApiOptions WithClaimsBindingCheck(this OpenApiOptions options) => options
-        .AddOperationTransformer((operation, context, _) =>
+        .AddOperationTransformer((operation, context, cancellationToken) =>
         {
             if (context.Description.ParameterDescriptions
                 .Where(a => a.Source.DisplayName is "ClaimsBindingSource")
                 .Select(i => i.Name)
                 .ToArray() is { Length: > 0 } parameterNamesToRemove)
             {
-                RemoveAll(operation.Parameters, operation.Parameters.IntersectBy(parameterNamesToRemove, p => p.Name).ToArray());
+                RemoveAll(operation.Parameters, operation.Parameters.IntersectBy(parameterNamesToRemove, p => p.Name).ToArray(), cancellationToken);
 
-                static void RemoveAll<T>(IList<T> values, IEnumerable<T> toRemove)
+                static void RemoveAll<T>(IList<T> values, IEnumerable<T> toRemove, CancellationToken cancellationToken)
                 {
                     foreach (var remove in toRemove)
                     {
-                        values.Remove(remove);
+                        cancellationToken.ThrowIfCancellationRequested();
+                        _ = values.Remove(remove);
                     }
                 }
             }
