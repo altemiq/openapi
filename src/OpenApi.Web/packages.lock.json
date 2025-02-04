@@ -4,30 +4,30 @@
     "net9.0": {
       "Altemiq.DotNet.CodingStandard": {
         "type": "Direct",
-        "requested": "[1.0.47, )",
-        "resolved": "1.0.56",
-        "contentHash": "irQxaj6UtRZ5ZrH3eoR6mlRnSdj+d9cWMQDYJTSSW+v7mqY7O8qPavb5vv9QVyazDwJYhhDz66/cM/dAs6PU/A==",
+        "requested": "[1.0.59, )",
+        "resolved": "1.0.81",
+        "contentHash": "ukaqV/R4qJAVxY/h+mKDsP3+FkmUc79ImVkGoXqWhEMbPRozeiHsbmxN8elC2HCO/B/p+rnMa0zyShJAj7MAPQ==",
         "dependencies": {
           "DotNet.ReproducibleBuilds": "1.2.25",
           "DotNet.ReproducibleBuilds.Isolated": "1.2.25",
-          "Meziantou.Analyzer": "2.0.186",
-          "Microsoft.CodeAnalysis.BannedApiAnalyzers": "3.3.4",
-          "Roslynator.Analyzers": "4.12.11",
-          "SonarAnalyzer.CSharp": "10.5.0.109200",
+          "Meziantou.Analyzer": "2.0.202",
+          "Microsoft.CodeAnalysis.BannedApiAnalyzers": "4.14.0",
+          "Roslynator.Analyzers": "4.13.1",
+          "SonarAnalyzer.CSharp": "10.11.0.117924",
           "StyleCop.Analyzers.Unstable": "1.2.0.556"
         }
       },
       "Altemiq.SemanticVersioning.MSBuild": {
         "type": "Direct",
-        "requested": "[2.1.7, )",
+        "requested": "[2.1.8, )",
         "resolved": "2.1.8",
         "contentHash": "Vbaqo/lUthlOBtHGMegNoLGIpxG0jAcdEsMjREFkimKTEMglPgipgL27CIFlJ+jYePxD7HXYICwsDAMkjSgk4A=="
       },
       "Swashbuckle.AspNetCore.SwaggerUI": {
         "type": "Direct",
-        "requested": "[7.0.0, )",
-        "resolved": "7.0.0",
-        "contentHash": "rJJony+jsxvpfJM9ZGVxjp0DVpalZv8cAhiMSLW6L2hgUWb7k5qPVuzQHWXtkT8lrG1hQ8vWeR+HUwgCQm9J3A=="
+        "requested": "[7.2.0, )",
+        "resolved": "7.2.0",
+        "contentHash": "hgrXeKzyp5OGN8qVvL7A+vhmU7mDJTfGpiMBRL66IcfLOyna8UTLtn3cC3CghamXpRDufcc9ciklTszUGEQK0w=="
       },
       "DotNet.ReproducibleBuilds": {
         "type": "Transitive",
@@ -41,21 +41,13 @@
       },
       "Meziantou.Analyzer": {
         "type": "Transitive",
-        "resolved": "2.0.186",
-        "contentHash": "PE8c9opHuUWLNqnZTN/KQC9oIfD/ZtsQ25sHF7/og4KfIRVnN4mgiyYw5NwCp8YPGapLoduIxuyQAcic6Eqcjg=="
-      },
-      "Microsoft.AspNetCore.OpenApi": {
-        "type": "Transitive",
-        "resolved": "9.0.0",
-        "contentHash": "FqUK5j1EOPNuFT7IafltZQ3cakqhSwVzH5ZW1MhZDe4pPXs9sJ2M5jom1Omsu+mwF2tNKKlRAzLRHQTZzbd+6Q==",
-        "dependencies": {
-          "Microsoft.OpenApi": "1.6.17"
-        }
+        "resolved": "2.0.202",
+        "contentHash": "VDsrL0SRYoR6t975NExCRgZzGIYudgIETUAPnyMG17sr9I9OzNGzpwX1dHOPSd8Ue28ltnNiOL3czLmNdQngYA=="
       },
       "Microsoft.CodeAnalysis.BannedApiAnalyzers": {
         "type": "Transitive",
-        "resolved": "3.3.4",
-        "contentHash": "0k2Jwpc8eq0hjOtX6TxRkHm9clkJ2PAQ3heEHgqIJZcsfdFosC/iyz18nsgTVDDWpID80rC7aiYK7ripx+Qndg=="
+        "resolved": "4.14.0",
+        "contentHash": "gSWJlDWwmDhtbrEJGiHqvEjz9KthIiFD0qYB8zZ6a7z+xpMSPEtM9yTYELSa58iFWYlzSRqP9FXO6KoT3+ZMtg=="
       },
       "Microsoft.OpenApi": {
         "type": "Transitive",
@@ -64,23 +56,32 @@
       },
       "Roslynator.Analyzers": {
         "type": "Transitive",
-        "resolved": "4.12.11",
-        "contentHash": "yvsRYT5EVtcT+V8ZW+5cxd1O9Sgf8PbC7DlQL/T5NA4g5yjaFe+WQ7evpy92Lj29m2E+XayBsO2TnCWKZlPWaA=="
+        "resolved": "4.13.1",
+        "contentHash": "KZpLy6ZlCebMk+d/3I5KU2R7AOb4LNJ6tPJqPtvFXmO8bEBHQvCIAvJOnY2tu4C9/aVOROTDYUFADxFqw1gh/g=="
       },
       "SonarAnalyzer.CSharp": {
         "type": "Transitive",
-        "resolved": "10.5.0.109200",
-        "contentHash": "yS8uepqf+HwSEZtkJR7O4siqfyGKX4Lu7mIB6TTppy59czq7qkFjZ+fB7NTRZg8a/Pu7tvwVhpEMcxUTiQZmSw=="
+        "resolved": "10.11.0.117924",
+        "contentHash": "C7eK46HEeZCptfuR2kGjLnBzdzBjx1F1fb6Ga8DFOsPPaz1sw7LNWdGh42+Ch5NJW/Iq39xcDds4lvww7i4BGw=="
       },
       "StyleCop.Analyzers.Unstable": {
         "type": "Transitive",
         "resolved": "1.2.0.556",
         "contentHash": "zvn9Mqs/ox/83cpYPignI8hJEM2A93s2HkHs8HYMOAQW0PkampyoErAiIyKxgTLqbbad29HX/shv/6LGSjPJNQ=="
       },
-      "Altemiq.AspNetCore.OpenApi": {
+      "aspnetcore.openapi": {
         "type": "Project",
         "dependencies": {
           "Microsoft.AspNetCore.OpenApi": "[9.0.0, )"
+        }
+      },
+      "Microsoft.AspNetCore.OpenApi": {
+        "type": "CentralTransitive",
+        "requested": "[9.0.1, )",
+        "resolved": "9.0.1",
+        "contentHash": "xRJe8UrLnOGs6hOBrT/4r74q97626H0mABb/DV0smlReIx6uQCENAe+TUqF6hD3NtT4sB+qrvWhAej6kxPxgew==",
+        "dependencies": {
+          "Microsoft.OpenApi": "1.6.17"
         }
       }
     }

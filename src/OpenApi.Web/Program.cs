@@ -16,7 +16,7 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi(options =>
 {
-    options.SetInfo("API");
+    _ = options.SetInfo("API");
     var scheme = options.AddOAuth2(
         new Microsoft.OpenApi.Models.OpenApiOAuthFlows
         {
@@ -31,8 +31,8 @@ builder.Services.AddOpenApi(options =>
                 },
             },
         });
-    options.WithAuthorizeCheck(scheme);
-    options.UsePathBase(PathBase);
+    _ = options.WithAuthorizeCheck(scheme);
+    _ = options.UsePathBase(PathBase);
 });
 
 var app = builder.Build();
@@ -40,7 +40,7 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
-    app.MapOpenApi();
+    _ = app.MapOpenApi();
 }
 
 app.UsePathBase(PathBase);
