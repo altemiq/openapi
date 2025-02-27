@@ -23,6 +23,12 @@
         "resolved": "2.1.9",
         "contentHash": "fkPYeClDFo2SRY+fW0k7bxAamHBJuL3tkxL62PfZkErimcN/A/7grpfZ/KiZibKRfl0ftz38LFxBXt1IpSn+jQ=="
       },
+      "Scalar.AspNetCore": {
+        "type": "Direct",
+        "requested": "[2.0.18, )",
+        "resolved": "2.0.18",
+        "contentHash": "nS8Sw6wRO1A/dARn3q9R6znIBfddJcmAczI5uMROBGWkO2KG/ad/Ld+UeUePTxGr1+6humJSOxI7An+q4q3oGA=="
+      },
       "Swashbuckle.AspNetCore.SwaggerUI": {
         "type": "Direct",
         "requested": "[7.3.1, )",

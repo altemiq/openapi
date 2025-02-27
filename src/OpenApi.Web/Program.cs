@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------
 
 using Microsoft.AspNetCore.OpenApi;
+using Scalar.AspNetCore;
 
 const string PathBase = "/api";
 
@@ -41,6 +42,7 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     _ = app.MapOpenApi();
+    _ = app.MapScalarApiReference();
 }
 
 app.UsePathBase(PathBase);
