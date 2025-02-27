@@ -72,7 +72,7 @@
       "aspnetcore.openapi": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.AspNetCore.OpenApi": "[9.0.0, )"
+          "Microsoft.AspNetCore.OpenApi": "[9.0.1, )"
         }
       },
       "Microsoft.AspNetCore.OpenApi": {
