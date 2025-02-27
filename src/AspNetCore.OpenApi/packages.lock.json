@@ -19,9 +19,9 @@
       },
       "Altemiq.SemanticVersioning.MSBuild": {
         "type": "Direct",
-        "requested": "[2.1.8, )",
-        "resolved": "2.1.8",
-        "contentHash": "Vbaqo/lUthlOBtHGMegNoLGIpxG0jAcdEsMjREFkimKTEMglPgipgL27CIFlJ+jYePxD7HXYICwsDAMkjSgk4A=="
+        "requested": "[2.1.9, )",
+        "resolved": "2.1.9",
+        "contentHash": "fkPYeClDFo2SRY+fW0k7bxAamHBJuL3tkxL62PfZkErimcN/A/7grpfZ/KiZibKRfl0ftz38LFxBXt1IpSn+jQ=="
       },
       "Microsoft.AspNetCore.OpenApi": {
         "type": "Direct",
