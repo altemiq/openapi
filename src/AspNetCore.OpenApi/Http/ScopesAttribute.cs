@@ -18,7 +18,7 @@ namespace Microsoft.AspNetCore.Http;
 public sealed class ScopesAttribute(params string[] scopes) : Attribute, Metadata.IScopesMetadata
 {
     /// <inheritdoc/>
-    public IReadOnlyList<string> Scopes { get; } = new List<string>(scopes);
+    public IReadOnlyList<string> Scopes { get; } = [.. scopes];
 
     /// <inheritdoc/>
     public override string ToString() => $"{nameof(this.Scopes)}: {string.Join(',', this.Scopes)}";

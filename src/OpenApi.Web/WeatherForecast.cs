@@ -37,10 +37,10 @@ public class WeatherForecast
     /// Gets a list of example forecasts.
     /// </summary>
     /// <returns>The example forecasts.</returns>
-    internal static IEnumerable<WeatherForecast> Get() => Enumerable.Range(1, 5).Select(index => new WeatherForecast
+    internal static IEnumerable<WeatherForecast> Get() => [.. Enumerable.Range(1, 5).Select(index => new WeatherForecast
     {
         Date = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(index)),
         TemperatureC = Random.Shared.Next(-20, 55),
         Summary = Summaries[Random.Shared.Next(Summaries.Length)],
-    }).ToArray();
+    })];
 }

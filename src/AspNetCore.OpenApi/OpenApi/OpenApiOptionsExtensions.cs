@@ -208,7 +208,7 @@ public static class OpenApiOptionsExtensions
                 .Select(i => i.Name)
                 .ToArray() is { Length: > 0 } parameterNamesToRemove)
             {
-                RemoveAll(operation.Parameters, operation.Parameters.IntersectBy(parameterNamesToRemove, p => p.Name).ToArray(), cancellationToken);
+                RemoveAll(operation.Parameters, [.. operation.Parameters.IntersectBy(parameterNamesToRemove, p => p.Name)], cancellationToken);
 
                 static void RemoveAll<T>(IList<T> values, IEnumerable<T> toRemove, CancellationToken cancellationToken)
                 {
