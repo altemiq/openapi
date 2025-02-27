@@ -4,7 +4,7 @@
     "net9.0": {
       "Altemiq.DotNet.CodingStandard": {
         "type": "Direct",
-        "requested": "[1.0.59, )",
+        "requested": "[1.0.63, )",
         "resolved": "1.0.81",
         "contentHash": "ukaqV/R4qJAVxY/h+mKDsP3+FkmUc79ImVkGoXqWhEMbPRozeiHsbmxN8elC2HCO/B/p+rnMa0zyShJAj7MAPQ==",
         "dependencies": {
