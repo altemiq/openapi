@@ -14,8 +14,8 @@
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     
     <!-- Versioning -->
-    <VerOpenApi>9.0.2</VerOpenApi>
-    <VersionPrefix Condition=" '$(VersionPrefix)' == '' ">$(VerOpenApi)</VersionPrefix>
+    <Ver_OpenApi>9.0.3</Ver_OpenApi>
+    <VersionPrefix Condition=" '$(VersionPrefix)' == '' ">$(Ver_OpenApi)</VersionPrefix>
   </PropertyGroup>
 
   <PropertyGroup Label=".NET Analyzers">
