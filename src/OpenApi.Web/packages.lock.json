@@ -25,9 +25,9 @@
       },
       "Scalar.AspNetCore": {
         "type": "Direct",
-        "requested": "[2.0.18, )",
-        "resolved": "2.0.18",
-        "contentHash": "nS8Sw6wRO1A/dARn3q9R6znIBfddJcmAczI5uMROBGWkO2KG/ad/Ld+UeUePTxGr1+6humJSOxI7An+q4q3oGA=="
+        "requested": "[2.0.29, )",
+        "resolved": "2.0.29",
+        "contentHash": "SWU/9vXJjBM5pYdFKD+vR4Ku+yyo83D2S16v8LpPW/ANm7v4SVf67L8PwFybTcMZjKkn/P4omS46Q9u3tzS1AA=="
       },
       "Swashbuckle.AspNetCore.SwaggerUI": {
         "type": "Direct",
