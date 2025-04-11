@@ -50,7 +50,7 @@ public class OpenApiOptionsExtensionsTests
             object? service = serviceProvider.GetKeyedServices(documentServiceType, documentName).First();
 
             System.Reflection.MethodInfo method = documentServiceType.GetMethod("GetOpenApiDocumentAsync")!;
-            Task<Microsoft.OpenApi.Models.OpenApiDocument> task = (Task<Microsoft.OpenApi.Models.OpenApiDocument>)method.Invoke(service, [serviceProvider, CancellationToken.None])!;
+            Task<Microsoft.OpenApi.Models.OpenApiDocument> task = (Task<Microsoft.OpenApi.Models.OpenApiDocument>)method.Invoke(service, [serviceProvider, null, CancellationToken.None])!;
 
             return await task;
         }
