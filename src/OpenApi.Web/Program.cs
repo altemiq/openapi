@@ -19,9 +19,9 @@ builder.Services.AddOpenApi(options =>
 {
     _ = options.SetInfo("API");
     var scheme = options.AddOAuth2(
-        new Microsoft.OpenApi.Models.OpenApiOAuthFlows
+        new()
         {
-            Password = new Microsoft.OpenApi.Models.OpenApiOAuthFlow
+            Password = new()
             {
                 Scopes =
                 {

@@ -14,7 +14,7 @@
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     
     <!-- Versioning -->
-    <Ver_OpenApi>9.0.4</Ver_OpenApi>
+    <Ver_OpenApi>9.0.5</Ver_OpenApi>
     <VersionPrefix Condition=" '$(VersionPrefix)' == '' ">$(Ver_OpenApi)</VersionPrefix>
   </PropertyGroup>
 

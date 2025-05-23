@@ -19,7 +19,7 @@ public static class OpenApiRouteHandlerBuilderExtensions
     /// <remarks>
     /// The OpenAPI specification supports scopes in the security scheme for an endpoint.
     /// </remarks>
-    /// <typeparam name="TBuilder">The endpoint convension builder.</typeparam>
+    /// <typeparam name="TBuilder">The endpoint convention builder.</typeparam>
     /// <param name="builder">The <see cref="IEndpointConventionBuilder"/>.</param>
     /// <param name="scopes">A collection of scopes to be associated with the endpoint.</param>
     /// <returns>A <see cref="IEndpointConventionBuilder"/> that can be used to further customize the endpoint.</returns>

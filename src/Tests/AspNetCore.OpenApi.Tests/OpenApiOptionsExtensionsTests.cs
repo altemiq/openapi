@@ -10,7 +10,7 @@ public class OpenApiOptionsExtensionsTests
     [Test]
     public async Task DefaultTitle()
     {
-        await TestTitle(typeof(OpenApiOptionsExtensionsTests).Assembly.GetName().Name, options => { });
+        await TestTitle(typeof(OpenApiOptionsExtensionsTests).Assembly.GetName().Name, _ => { });
     }
 
     [Test]
@@ -41,9 +41,9 @@ public class OpenApiOptionsExtensionsTests
 
         WebApplication application = builder.Build();
 
-        return await GetOpenApiDocument(application.Services, DocumentName);
+        return await GetOpenApiDocumentCore(application.Services, DocumentName);
 
-        static async Task<Microsoft.OpenApi.Models.OpenApiDocument> GetOpenApiDocument(IServiceProvider serviceProvider, string documentName)
+        static async Task<Microsoft.OpenApi.Models.OpenApiDocument> GetOpenApiDocumentCore(IServiceProvider serviceProvider, string documentName)
         {
             // get the keyed service
             Type documentServiceType = typeof(OpenApiOptions).Assembly.GetType("Microsoft.AspNetCore.OpenApi.OpenApiDocumentService") ?? throw new InvalidOperationException();

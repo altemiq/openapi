@@ -16,8 +16,8 @@ public static class OpenApiOptionsExtensions
     private const string UnauthorizedValue = "User is not authorised";
     private const string ForbiddenValue = "User access to resource is forbidden";
 
-    private static readonly string UnauthorizedKey = AspNetCore.Http.StatusCodes.Status401Unauthorized.ToString(System.Globalization.CultureInfo.InvariantCulture);
-    private static readonly string ForbiddenKey = AspNetCore.Http.StatusCodes.Status403Forbidden.ToString(System.Globalization.CultureInfo.InvariantCulture);
+    private static readonly string UnauthorizedKey = Http.StatusCodes.Status401Unauthorized.ToString(System.Globalization.CultureInfo.InvariantCulture);
+    private static readonly string ForbiddenKey = Http.StatusCodes.Status403Forbidden.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
     /// <summary>
     /// Sets the information on the document.
@@ -76,7 +76,7 @@ public static class OpenApiOptionsExtensions
         (document, _, _) =>
         {
             document.Servers.Clear();
-            document.Servers.Add(new OpenApiServer { Url = pathBase });
+            document.Servers.Add(new() { Url = pathBase });
             return Task.CompletedTask;
         });
 
@@ -178,7 +178,7 @@ public static class OpenApiOptionsExtensions
     /// <param name="schemeReference">The scheme reference.</param>
     /// <returns>The input options.</returns>
     public static OpenApiSecurityScheme AddOpenIdConnect(this OpenApiOptions options, string openIdConnectUrl, OpenApiReference schemeReference) =>
-        options.AddSecurityScheme(SecuritySchemeType.OpenIdConnect, schemeReference, scheme => scheme.OpenIdConnectUrl = new Uri(openIdConnectUrl));
+        options.AddSecurityScheme(SecuritySchemeType.OpenIdConnect, schemeReference, scheme => scheme.OpenIdConnectUrl = new(openIdConnectUrl));
 
     /// <summary>
     /// Adds the specified security scheme.
@@ -189,7 +189,7 @@ public static class OpenApiOptionsExtensions
     public static OpenApiOptions AddSecurityScheme(this OpenApiOptions options, OpenApiSecurityScheme securityScheme) => options.AddDocumentTransformer(
         (document, _, _) =>
         {
-            document.Components ??= new OpenApiComponents();
+            document.Components ??= new();
             document.Components.SecuritySchemes.Add(securityScheme.Reference.Id, securityScheme);
 
             return Task.CompletedTask;
@@ -230,7 +230,7 @@ public static class OpenApiOptionsExtensions
     /// <param name="name">The authentication scheme.</param>
     /// <returns>The input options.</returns>
     public static OpenApiOptions WithAuthorizeCheck(this OpenApiOptions options, string name) =>
-        options.WithAuthorizeCheck(() => new OpenApiSecurityScheme { Reference = new OpenApiReference { Id = name } });
+        options.WithAuthorizeCheck(() => new() { Reference = new() { Id = name } });
 
     /// <summary>
     /// Adds a check for <see cref="Authorization.IAuthorizeData"/> and adds the specified scheme.
@@ -239,7 +239,7 @@ public static class OpenApiOptionsExtensions
     /// <param name="schemeReference">The security scheme reference.</param>
     /// <returns>The input options.</returns>
     public static OpenApiOptions WithAuthorizeCheck(this OpenApiOptions options, OpenApiReference schemeReference) =>
-        options.WithAuthorizeCheck(() => new OpenApiSecurityScheme { Reference = schemeReference });
+        options.WithAuthorizeCheck(() => new() { Reference = schemeReference });
 
     /// <summary>
     /// Adds a check for <see cref="Authorization.IAuthorizeData"/> and adds the specified scheme.
@@ -253,7 +253,7 @@ public static class OpenApiOptionsExtensions
     private static OpenApiOptions WithAuthorizeCheck(this OpenApiOptions options, Func<OpenApiSecurityScheme?> securitySchemeFactory) => options.AddOperationTransformer(
         (operation, context, _) =>
         {
-            if (context.Description.ActionDescriptor.EndpointMetadata.Any(m => m is Microsoft.AspNetCore.Authorization.IAuthorizeData))
+            if (context.Description.ActionDescriptor.EndpointMetadata.Any(m => m is Authorization.IAuthorizeData))
             {
                 operation.Responses.AddOrUpdate(UnauthorizedKey, () => new() { Description = UnauthorizedValue }, r => r.Description = UnauthorizedValue);
                 operation.Responses.AddOrUpdate(ForbiddenKey, () => new() { Description = ForbiddenValue }, r => r.Description = ForbiddenValue);
@@ -266,7 +266,7 @@ public static class OpenApiOptionsExtensions
                     {
                         // gets any scopes
                         requirements = context.Description.ActionDescriptor.EndpointMetadata
-                            .OfType<Microsoft.AspNetCore.Http.Metadata.IScopesMetadata>()
+                            .OfType<Http.Metadata.IScopesMetadata>()
                             .Aggregate(
                                 new List<string>(),
                                 (scopes, metadata) =>
@@ -278,8 +278,6 @@ public static class OpenApiOptionsExtensions
 
                     operation.Security.Add(new() { [securityScheme] = requirements });
                 }
-
-                return Task.CompletedTask;
             }
 
             return Task.CompletedTask;

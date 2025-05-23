@@ -19,12 +19,12 @@ public class WeatherForecast
     public DateOnly Date { get; init; }
 
     /// <summary>
-    /// Gets the temperature in celcius.
+    /// Gets the temperature in Celsius.
     /// </summary>
     public int TemperatureC { get; init; }
 
     /// <summary>
-    /// Gets the temperature in farenheit.
+    /// Gets the temperature in Fahrenheit.
     /// </summary>
     public int TemperatureF => 32 + (int)(this.TemperatureC / 0.5556);
 
@@ -42,5 +42,5 @@ public class WeatherForecast
         Date = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(index)),
         TemperatureC = Random.Shared.Next(-20, 55),
         Summary = Summaries[Random.Shared.Next(Summaries.Length)],
-    })];
+    }),];
 }
