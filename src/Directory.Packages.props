@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup Label="Analyzers">
-    <GlobalPackageReference Include="Altemiq.DotNet.CodingStandard" Version="1.0.72" />
+    <GlobalPackageReference Include="Altemiq.DotNet.CodingStandard" Version="1.0.81" />
   </ItemGroup>
 
   <ItemGroup Label="Build">
