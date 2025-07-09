@@ -157,6 +157,9 @@ jobs:
   push:
     runs-on: ubuntu-latest
     needs: [ create-nuget, run-tests ]
+    permissions:
+      packages: write
+      actions: write
 
     env:
       DOTNET_NOLOGO: true
