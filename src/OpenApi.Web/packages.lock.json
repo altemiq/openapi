@@ -4,9 +4,9 @@
     "net9.0": {
       "Altemiq.DotNet.CodingStandard": {
         "type": "Direct",
-        "requested": "[1.0.86, )",
-        "resolved": "1.0.86",
-        "contentHash": "Sldu4rNp7493m4E0Q0M3RRyQ5QAKTxT9V/11zNG/dZ8zqdm26I/F5DjmYJePvyDIHBV6e4uZxXJn8RVjGTN+kg==",
+        "requested": "[1.0.87, )",
+        "resolved": "1.0.87",
+        "contentHash": "eD95/DF57JcoGppeBWyGYgs2f2piVSRcAwV+GvJLIXRNrakiEmE87AfKkJ7iIUxHoYhveUy67GT7oAVgiLy6Mw==",
         "dependencies": {
           "DotNet.ReproducibleBuilds": "1.2.25",
           "DotNet.ReproducibleBuilds.Isolated": "1.2.25",
