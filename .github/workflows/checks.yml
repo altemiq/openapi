@@ -35,10 +35,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-        source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
-        config-file: ${{ github.workspace }}/src/nuget.config
-      env:
-        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     - name: Restore using dotnet
       if: steps.cache.outputs.cache-hit != 'true'
@@ -67,10 +63,6 @@ jobs:
       uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
-        source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
-        config-file: ${{ github.workspace }}/src/nuget.config
-      env:
-        NUGET_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     # Test
     - name: Test with dotnet
