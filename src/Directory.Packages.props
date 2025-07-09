@@ -15,7 +15,8 @@
   <ItemGroup>
     <PackageVersion Include="Scalar.AspNetCore" Version="2.4.13" />
     <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.4" />
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(Ver_OpenApi)" />
+    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(VerMicrosoft_AspNetCore_OpenApi)" />
+    <PackageVersion Include="Microsoft.OpenApi" Version="$(VerMicrosoft_OpenApi)" />
   </ItemGroup>
 
 </Project>

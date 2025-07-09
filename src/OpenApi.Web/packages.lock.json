@@ -55,11 +55,6 @@
         "resolved": "4.14.0",
         "contentHash": "gSWJlDWwmDhtbrEJGiHqvEjz9KthIiFD0qYB8zZ6a7z+xpMSPEtM9yTYELSa58iFWYlzSRqP9FXO6KoT3+ZMtg=="
       },
-      "Microsoft.OpenApi": {
-        "type": "Transitive",
-        "resolved": "1.6.17",
-        "contentHash": "Le+kehlmrlQfuDFUt1zZ2dVwrhFQtKREdKBo+rexOwaCoYP0/qpgT9tLxCsZjsgR5Itk1UKPcbgO+FyaNid/bA=="
-      },
       "Roslynator.Analyzers": {
         "type": "Transitive",
         "resolved": "4.13.1",
@@ -78,7 +73,14 @@
       "Altemiq.AspNetCore.OpenApi": {
         "type": "Project",
         "dependencies": {
+          "Altemiq.OpenApi": "[1.6.17, )",
           "Microsoft.AspNetCore.OpenApi": "[9.0.7, )"
+        }
+      },
+      "Altemiq.OpenApi": {
+        "type": "Project",
+        "dependencies": {
+          "Microsoft.OpenApi": "[1.6.17, )"
         }
       },
       "Microsoft.AspNetCore.OpenApi": {
@@ -89,6 +91,12 @@
         "dependencies": {
           "Microsoft.OpenApi": "1.6.17"
         }
+      },
+      "Microsoft.OpenApi": {
+        "type": "CentralTransitive",
+        "requested": "[1.6.17, )",
+        "resolved": "1.6.17",
+        "contentHash": "Le+kehlmrlQfuDFUt1zZ2dVwrhFQtKREdKBo+rexOwaCoYP0/qpgT9tLxCsZjsgR5Itk1UKPcbgO+FyaNid/bA=="
       }
     }
   }

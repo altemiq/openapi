@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
-    <RootNamespace>Microsoft.AspNetCore</RootNamespace>
-    <VersionPrefix Condition=" '$(VersionPrefix)' == '' ">$(VerMicrosoft_AspNetCore_OpenApi)</VersionPrefix>
-    
+    <TargetFrameworks>netstandard2.0;net9.0</TargetFrameworks>
+    <RootNamespace>Microsoft.OpenApi</RootNamespace>
+    <VersionPrefix Condition=" '$(VersionPrefix)' == '' ">$(VerMicrosoft_OpenApi)</VersionPrefix>
+
     <IsPackable>true</IsPackable>
   </PropertyGroup>
 
   <PropertyGroup>
     <Authors>rsking</Authors>
-    <Description>Altemiq ASP.NET Core OpenAPI assemblies</Description>
-    <PackageTags>aspnetcore;openapi</PackageTags>
+    <Description>Altemiq OpenAPI assemblies</Description>
+    <PackageTags>openapi</PackageTags>
     <_ReadmeFile>readme.md</_ReadmeFile>
     <_IconFile>icon.png</_IconFile>
     <PackageReadmeFile Condition="Exists('$(_ReadmeFile)')">$(_ReadmeFile)</PackageReadmeFile>
@@ -24,11 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\OpenApi\OpenApi.csproj" />
+    <PackageReference Include="Microsoft.OpenApi" />
   </ItemGroup>
 
 </Project>

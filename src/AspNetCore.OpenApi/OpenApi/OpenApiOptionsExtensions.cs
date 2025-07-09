@@ -251,12 +251,21 @@ public static class OpenApiOptionsExtensions
         options.WithAuthorizeCheck(() => securityScheme);
 
     private static OpenApiOptions WithAuthorizeCheck(this OpenApiOptions options, Func<OpenApiSecurityScheme?> securitySchemeFactory) => options.AddOperationTransformer(
-        (operation, context, _) =>
+        (operation, context, cancellationToken) =>
         {
+            cancellationToken.ThrowIfCancellationRequested();
             if (context.Description.ActionDescriptor.EndpointMetadata.Any(m => m is Authorization.IAuthorizeData))
             {
-                operation.Responses.AddOrUpdate(UnauthorizedKey, () => new() { Description = UnauthorizedValue }, r => r.Description = UnauthorizedValue);
-                operation.Responses.AddOrUpdate(ForbiddenKey, () => new() { Description = ForbiddenValue }, r => r.Description = ForbiddenValue);
+                _ = operation.Responses.AddOrUpdate(UnauthorizedKey, _ => new() { Description = UnauthorizedValue }, (_, r) =>
+                {
+                    r.Description = UnauthorizedValue;
+                    return r;
+                });
+                _ = operation.Responses.AddOrUpdate(ForbiddenKey, _ => new() { Description = ForbiddenValue }, (_, r) =>
+                {
+                    r.Description = ForbiddenValue;
+                    return r;
+                });
 
                 if (securitySchemeFactory() is { } securityScheme)
                 {
@@ -294,16 +303,5 @@ public static class OpenApiOptionsExtensions
         configure?.Invoke(securityScheme);
         _ = options.AddSecurityScheme(securityScheme);
         return securityScheme;
-    }
-
-    private static void AddOrUpdate(this OpenApiResponses responses, string key, Func<OpenApiResponse> addFunc, Action<OpenApiResponse> updateFunc)
-    {
-        if (responses.TryGetValue(key, out var value))
-        {
-            updateFunc(value);
-            return;
-        }
-
-        responses.Add(key, addFunc());
     }
 }
