@@ -5,7 +5,7 @@
   </PropertyGroup>
 
   <ItemGroup Label="Analyzers">
-    <GlobalPackageReference Include="Altemiq.DotNet.CodingStandard" Version="1.0.87" />
+    <GlobalPackageReference Include="Altemiq.DotNet.CodingStandard" Version="1.0.98" />
   </ItemGroup>
 
   <ItemGroup Label="Build">
@@ -13,8 +13,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageVersion Include="Scalar.AspNetCore" Version="2.4.13" />
-    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="8.1.4" />
+    <PackageVersion Include="Scalar.AspNetCore" Version="2.6.9" />
+    <PackageVersion Include="Swashbuckle.AspNetCore.SwaggerUI" Version="9.0.3" />
     <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(VerMicrosoft_AspNetCore_OpenApi)" />
     <PackageVersion Include="Microsoft.OpenApi" Version="$(VerMicrosoft_OpenApi)" />
   </ItemGroup>
