@@ -4,14 +4,14 @@
     "net9.0": {
       "Altemiq.DotNet.CodingStandard": {
         "type": "Direct",
-        "requested": "[1.0.98, )",
-        "resolved": "1.0.98",
-        "contentHash": "oU+67LSI86F3RsOk7DStx1LFkaX1gHzBWjXYpM9Z+PCo7UzmfG0mTyQkoJshcJQRjZvOrdwy/gWSSk5uvT17Jg==",
+        "requested": "[1.0.106, )",
+        "resolved": "1.0.106",
+        "contentHash": "m/YEVWDqKPSEn8hHpKTzOh5CzpMtsjT+38sX7uIW4H4T/RQZ+DXmrRmTWZIkwm7oHVn3GLnlvXjPMpsDldzHSw==",
         "dependencies": {
           "DotNet.ReproducibleBuilds": "1.2.25",
           "DotNet.ReproducibleBuilds.Isolated": "1.2.25",
-          "Meziantou.Analyzer": "2.0.212",
-          "Microsoft.CodeAnalysis.BannedApiAnalyzers": "4.14.0",
+          "Meziantou.Analyzer": "2.0.220",
+          "Microsoft.CodeAnalysis.BannedApiAnalyzers": "3.3.4",
           "Roslynator.Analyzers": "4.14.0",
           "SonarAnalyzer.CSharp": "10.15.0.120848",
           "StyleCop.Analyzers.Unstable": "1.2.0.556"
@@ -25,9 +25,9 @@
       },
       "Microsoft.AspNetCore.OpenApi": {
         "type": "Direct",
-        "requested": "[9.0.8, )",
-        "resolved": "9.0.8",
-        "contentHash": "BwF9sQCKmvu93C/pmKxJjPhF5fFB23MEcgTsGL+7W3wKLYawS4lyFSL5/qh00IJzuADLf+1SmvxMaphbyZYqQQ==",
+        "requested": "[9.0.9, )",
+        "resolved": "9.0.9",
+        "contentHash": "3Sina0gS/CTYt9XG6DUFPdXOmJui7e551U0kO2bIiDk3vZ2sctxxenN+cE1a5CrUpjIVZfZr32neWYYRO+Piaw==",
         "dependencies": {
           "Microsoft.OpenApi": "1.6.17"
         }
@@ -44,13 +44,13 @@
       },
       "Meziantou.Analyzer": {
         "type": "Transitive",
-        "resolved": "2.0.212",
-        "contentHash": "U91ktjjTRTccUs3Lk+hrLD9vW+2+lhnsOf4G1GpRSJi1pLn3uK5CU6wGP9Bmz1KlJs6Oz1GGoMhxQBoqQsmAuQ=="
+        "resolved": "2.0.220",
+        "contentHash": "LknH5tduuxY6jzPGUIBHrszk1fepyEWAD9Ht7Hq1rrGZ02BKx54ADXzrlXTkLNpnkVzRBHU4bO6HH7GwIeDR+w=="
       },
       "Microsoft.CodeAnalysis.BannedApiAnalyzers": {
         "type": "Transitive",
-        "resolved": "4.14.0",
-        "contentHash": "gSWJlDWwmDhtbrEJGiHqvEjz9KthIiFD0qYB8zZ6a7z+xpMSPEtM9yTYELSa58iFWYlzSRqP9FXO6KoT3+ZMtg=="
+        "resolved": "3.3.4",
+        "contentHash": "0k2Jwpc8eq0hjOtX6TxRkHm9clkJ2PAQ3heEHgqIJZcsfdFosC/iyz18nsgTVDDWpID80rC7aiYK7ripx+Qndg=="
       },
       "Roslynator.Analyzers": {
         "type": "Transitive",
