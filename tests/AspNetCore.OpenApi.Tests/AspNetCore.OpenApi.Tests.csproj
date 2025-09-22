@@ -11,7 +11,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\AspNetCore.OpenApi\AspNetCore.OpenApi.csproj" />
+    <ProjectReference Include="..\..\src\AspNetCore.OpenApi\AspNetCore.OpenApi.csproj" />
   </ItemGroup>
 
 </Project>

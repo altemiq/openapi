@@ -163,8 +163,8 @@
       "aspnetcore.openapi": {
         "type": "Project",
         "dependencies": {
-          "Altemiq.OpenApi": "[1.6.17, )",
-          "Microsoft.AspNetCore.OpenApi": "[9.0.9, )"
+          "Microsoft.AspNetCore.OpenApi": "[9.0.9, )",
+          "OpenApi": "[1.6.17, )"
         }
       },
       "openapi": {

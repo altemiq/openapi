@@ -2,8 +2,6 @@
 
   <PropertyGroup>
     <TargetFramework>net9.0</TargetFramework>
-    <IsPackable>false</IsPackable>
-    <CentralPackageTransitivePinningEnabled>true</CentralPackageTransitivePinningEnabled>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,7 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AspNetCore.OpenApi\AspNetCore.OpenApi.csproj" />
+    <ProjectReference Include="..\..\src\AspNetCore.OpenApi\AspNetCore.OpenApi.csproj" />
   </ItemGroup>
 
 </Project>

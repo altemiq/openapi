@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
 
     - uses: actions/cache@v4
       id: cache
@@ -30,15 +30,13 @@ jobs:
           ${{ runner.os }}-nuget-
 
     # Install the .NET workloads
-    - name: Setup .NET
+    - uses: actions/setup-dotnet@v5
       if: steps.cache.outputs.cache-hit != 'true'
-      uses: actions/setup-dotnet@v4
       with:
         dotnet-version: 9.0.x
 
     - name: Restore using dotnet
       if: steps.cache.outputs.cache-hit != 'true'
-      working-directory: ${{ github.workspace }}/src
       run: |
         dotnet restore
 
@@ -47,7 +45,7 @@ jobs:
     needs: restore
 
     steps:
-    - uses: actions/checkout@v4
+    - uses: actions/checkout@v5
       with:
         lfs: true
 
@@ -60,13 +58,13 @@ jobs:
 
     # Install .NET
     - name: Setup .NET
-      uses: actions/setup-dotnet@v4
+      uses: actions/setup-dotnet@v5
       with:
         dotnet-version: 9.0.x
 
     # Test
     - name: Test with dotnet
-      working-directory: ${{ github.workspace }}/src/Tests/AspNetCore.OpenApi.Tests
+      working-directory: ${{ github.workspace }}/tests/AspNetCore.OpenApi.Tests
       run: >
         dotnet run
         --results-directory ${{ github.workspace }}/coverage/results
@@ -84,8 +82,7 @@ jobs:
     - name: Test Results
       run: cat '${{ github.workspace }}/coverage/reports/SummaryGithub.md' >> $GITHUB_STEP_SUMMARY
 
-    - name: Upload Coverage Reports
-      uses: actions/upload-artifact@v4
+    - uses: actions/upload-artifact@v4
       with:
         name: CoverageReports
         path: ${{ github.workspace }}/coverage/reports
