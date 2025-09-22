@@ -18,12 +18,12 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi(options =>
 {
     _ = options.SetInfo("API");
-    var scheme = options.AddOAuth2(
+    var (_, name) = options.AddOAuth2(
         new()
         {
             Password = new()
             {
-                Scopes =
+                Scopes = new Dictionary<string, string>(StringComparer.Ordinal)
                 {
                     ["first"] = "First Scope",
                     ["second"] = "Second Scope",
@@ -32,7 +32,7 @@ builder.Services.AddOpenApi(options =>
                 },
             },
         });
-    _ = options.WithAuthorizeCheck(scheme);
+    _ = options.WithAuthorizeCheck(name);
     _ = options.UsePathBase(PathBase);
 });
 

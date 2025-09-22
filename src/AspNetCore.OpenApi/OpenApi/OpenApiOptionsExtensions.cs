@@ -6,6 +6,7 @@
 
 namespace Microsoft.AspNetCore.OpenApi;
 
+using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
 
 /// <summary>
@@ -75,8 +76,16 @@ public static class OpenApiOptionsExtensions
     public static OpenApiOptions UsePathBase(this OpenApiOptions options, Http.PathString pathBase) => options.AddDocumentTransformer(
         (document, _, _) =>
         {
-            document.Servers.Clear();
-            document.Servers.Add(new() { Url = pathBase });
+            if (document.Servers is null)
+            {
+                document.Servers = new List<OpenApiServer> { new() { Url = pathBase } };
+            }
+            else
+            {
+                document.Servers.Clear();
+                document.Servers.Add(new() { Url = pathBase });
+            }
+
             return Task.CompletedTask;
         });
 
@@ -84,55 +93,39 @@ public static class OpenApiOptionsExtensions
     /// Adds a security scheme for an API key.
     /// </summary>
     /// <param name="options">The options.</param>
-    /// <returns>The input options.</returns>
-    public static OpenApiSecurityScheme AddApiKey(this OpenApiOptions options) => options.AddApiKey(nameof(SecuritySchemeType.ApiKey));
+    /// <returns>The scheme.</returns>
+    public static (OpenApiSecurityScheme Scheme, string Name) AddApiKey(this OpenApiOptions options) => options.AddSecurityScheme(SecuritySchemeType.ApiKey);
 
     /// <summary>
     /// Adds a security scheme for an API key.
     /// </summary>
     /// <param name="options">The options.</param>
     /// <param name="name">The name of the reference.</param>
-    /// <returns>The input options.</returns>
-    public static OpenApiSecurityScheme AddApiKey(this OpenApiOptions options, string name) => options.AddApiKey(new OpenApiReference { Id = name, Type = ReferenceType.SecurityScheme });
-
-    /// <summary>
-    /// Adds a security scheme for an API key.
-    /// </summary>
-    /// <param name="options">The options.</param>
-    /// <param name="schemeReference">The scheme reference.</param>
-    /// <returns>The input options.</returns>
-    public static OpenApiSecurityScheme AddApiKey(this OpenApiOptions options, OpenApiReference schemeReference) => options.AddSecurityScheme(SecuritySchemeType.ApiKey, schemeReference);
+    /// <returns>The scheme.</returns>
+    public static OpenApiSecurityScheme AddApiKey(this OpenApiOptions options, string name) => options.AddSecurityScheme(SecuritySchemeType.ApiKey, name);
 
     /// <summary>
     /// Adds a security scheme for HTTP.
     /// </summary>
     /// <param name="options">The options.</param>
-    /// <returns>The input options.</returns>
-    public static OpenApiSecurityScheme AddHttp(this OpenApiOptions options) => options.AddHttp(nameof(SecuritySchemeType.Http));
+    /// <returns>The scheme.</returns>
+    public static (OpenApiSecurityScheme Scheme, string Name) AddHttp(this OpenApiOptions options) => options.AddSecurityScheme(SecuritySchemeType.Http, scheme => scheme.Scheme = "bearer");
 
     /// <summary>
     /// Adds a security scheme for HTTP.
     /// </summary>
     /// <param name="options">The options.</param>
     /// <param name="name">The name of the reference.</param>
-    /// <returns>The input options.</returns>
-    public static OpenApiSecurityScheme AddHttp(this OpenApiOptions options, string name) => options.AddHttp(new OpenApiReference { Id = name, Type = ReferenceType.SecurityScheme });
-
-    /// <summary>
-    /// Adds a security scheme for HTTP.
-    /// </summary>
-    /// <param name="options">The options.</param>
-    /// <param name="schemeReference">The scheme reference.</param>
-    /// <returns>The input options.</returns>
-    public static OpenApiSecurityScheme AddHttp(this OpenApiOptions options, OpenApiReference schemeReference) => options.AddSecurityScheme(SecuritySchemeType.Http, schemeReference, scheme => scheme.Scheme = "bearer");
+    /// <returns>The scheme.</returns>
+    public static OpenApiSecurityScheme AddHttp(this OpenApiOptions options, string name) => options.AddSecurityScheme(SecuritySchemeType.Http, name, scheme => scheme.Scheme = "bearer");
 
     /// <summary>
     /// Adds a security scheme for OAuth2.
     /// </summary>
     /// <param name="options">The options.</param>
     /// <param name="flows">An object containing configuration information for the flow types supported.</param>
-    /// <returns>The input options.</returns>
-    public static OpenApiSecurityScheme AddOAuth2(this OpenApiOptions options, OpenApiOAuthFlows flows) => options.AddOAuth2(nameof(SecuritySchemeType.OAuth2), flows);
+    /// <returns>The scheme.</returns>
+    public static (OpenApiSecurityScheme Scheme, string Name) AddOAuth2(this OpenApiOptions options, OpenApiOAuthFlows flows) => options.AddSecurityScheme(SecuritySchemeType.OAuth2, scheme => scheme.Flows = flows);
 
     /// <summary>
     /// Adds a security scheme for OAuth2.
@@ -140,25 +133,17 @@ public static class OpenApiOptionsExtensions
     /// <param name="options">The options.</param>
     /// <param name="name">The name of the reference.</param>
     /// <param name="flows">An object containing configuration information for the flow types supported.</param>
-    /// <returns>The input options.</returns>
-    public static OpenApiSecurityScheme AddOAuth2(this OpenApiOptions options, string name, OpenApiOAuthFlows flows) => options.AddOAuth2(new OpenApiReference { Id = name, Type = ReferenceType.SecurityScheme }, flows);
-
-    /// <summary>
-    /// Adds a security scheme for OAuth2.
-    /// </summary>
-    /// <param name="options">The options.</param>
-    /// <param name="schemeReference">The scheme reference.</param>
-    /// <param name="flows">An object containing configuration information for the flow types supported.</param>
-    /// <returns>The input options.</returns>
-    public static OpenApiSecurityScheme AddOAuth2(this OpenApiOptions options, OpenApiReference schemeReference, OpenApiOAuthFlows flows) => options.AddSecurityScheme(SecuritySchemeType.OAuth2, schemeReference, scheme => scheme.Flows = flows);
+    /// <returns>The scheme.</returns>
+    public static OpenApiSecurityScheme AddOAuth2(this OpenApiOptions options, string name, OpenApiOAuthFlows flows) => options.AddSecurityScheme(SecuritySchemeType.OAuth2, name, scheme => scheme.Flows = flows);
 
     /// <summary>
     /// Adds a security scheme for OpenID Connect.
     /// </summary>
     /// <param name="options">The options.</param>
     /// <param name="openIdConnectUrl">The OpenID connection URL.</param>
-    /// <returns>The input options.</returns>
-    public static OpenApiSecurityScheme AddOpenIdConnect(this OpenApiOptions options, string openIdConnectUrl) => options.AddOpenIdConnect(openIdConnectUrl, nameof(SecuritySchemeType.OpenIdConnect));
+    /// <returns>The scheme.</returns>
+    public static (OpenApiSecurityScheme Scheme, string Name) AddOpenIdConnect(this OpenApiOptions options, string openIdConnectUrl) =>
+        options.AddSecurityScheme(SecuritySchemeType.OpenIdConnect, scheme => scheme.OpenIdConnectUrl = new(openIdConnectUrl));
 
     /// <summary>
     /// Adds a security scheme for OpenID Connect.
@@ -166,31 +151,59 @@ public static class OpenApiOptionsExtensions
     /// <param name="options">The options.</param>
     /// <param name="openIdConnectUrl">The OpenID connection URL.</param>
     /// <param name="name">The name of the reference.</param>
-    /// <returns>The input options.</returns>
+    /// <returns>The scheme.</returns>
     public static OpenApiSecurityScheme AddOpenIdConnect(this OpenApiOptions options, string openIdConnectUrl, string name) =>
-        options.AddOpenIdConnect(openIdConnectUrl, new OpenApiReference { Id = name, Type = ReferenceType.SecurityScheme });
-
-    /// <summary>
-    /// Adds a security scheme for OpenID Connect.
-    /// </summary>
-    /// <param name="options">The options.</param>
-    /// <param name="openIdConnectUrl">The OpenID connection URL.</param>
-    /// <param name="schemeReference">The scheme reference.</param>
-    /// <returns>The input options.</returns>
-    public static OpenApiSecurityScheme AddOpenIdConnect(this OpenApiOptions options, string openIdConnectUrl, OpenApiReference schemeReference) =>
-        options.AddSecurityScheme(SecuritySchemeType.OpenIdConnect, schemeReference, scheme => scheme.OpenIdConnectUrl = new(openIdConnectUrl));
+        options.AddSecurityScheme(SecuritySchemeType.OpenIdConnect, name, scheme => scheme.OpenIdConnectUrl = new(openIdConnectUrl));
 
     /// <summary>
     /// Adds the specified security scheme.
     /// </summary>
     /// <param name="options">The options.</param>
     /// <param name="securityScheme">The security scheme.</param>
+    /// <param name="name">The name of the scheme that was added.</param>
     /// <returns>The input options.</returns>
-    public static OpenApiOptions AddSecurityScheme(this OpenApiOptions options, OpenApiSecurityScheme securityScheme) => options.AddDocumentTransformer(
+    public static OpenApiOptions AddSecurityScheme(this OpenApiOptions options, OpenApiSecurityScheme securityScheme, out string name)
+    {
+        name = GetName(securityScheme);
+        return options.AddSecurityScheme(name, securityScheme);
+
+        static string GetName(OpenApiSecurityScheme securityScheme)
+        {
+            return securityScheme switch
+            {
+                { Name: { } name } => name,
+                { Type: { } type } => type.ToString(),
+                { Scheme: { } scheme } => scheme,
+                _ => securityScheme.ToString()!,
+            };
+        }
+    }
+
+    /// <summary>
+    /// Adds the specified security scheme.
+    /// </summary>
+    /// <param name="options">The options.</param>
+    /// <param name="name">The scheme name.</param>
+    /// <param name="securityScheme">The security scheme.</param>
+    /// <returns>The input options.</returns>
+    public static OpenApiOptions AddSecurityScheme(this OpenApiOptions options, string name, OpenApiSecurityScheme securityScheme) => options.AddDocumentTransformer(
         (document, _, _) =>
         {
             document.Components ??= new();
-            document.Components.SecuritySchemes.Add(securityScheme.Reference.Id, securityScheme);
+            if (document.Components.SecuritySchemes is null)
+            {
+                document.Components.SecuritySchemes = new Dictionary<string, IOpenApiSecurityScheme>(StringComparer.OrdinalIgnoreCase)
+                {
+                    {
+                        name,
+                        securityScheme
+                    },
+                };
+            }
+            else
+            {
+                document.Components.SecuritySchemes.Add(name, securityScheme);
+            }
 
             return Task.CompletedTask;
         });
@@ -208,15 +221,25 @@ public static class OpenApiOptionsExtensions
                 .Select(i => i.Name)
                 .ToArray() is { Length: > 0 } parameterNamesToRemove)
             {
-                RemoveAll(operation.Parameters, [.. operation.Parameters.IntersectBy(parameterNamesToRemove, p => p.Name)], cancellationToken);
+                RemoveAll(operation.Parameters, [.. SafeIntersectBy(operation.Parameters, parameterNamesToRemove, p => p.Name)], cancellationToken);
 
-                static void RemoveAll<T>(IList<T> values, IEnumerable<T> toRemove, CancellationToken cancellationToken)
+                static void RemoveAll<T>(IList<T>? values, IEnumerable<T> toRemove, CancellationToken cancellationToken)
                 {
+                    if (values is null)
+                    {
+                        return;
+                    }
+
                     foreach (var remove in toRemove)
                     {
                         cancellationToken.ThrowIfCancellationRequested();
                         _ = values.Remove(remove);
                     }
+                }
+
+                static IEnumerable<TSource> SafeIntersectBy<TSource, TKey>(IEnumerable<TSource>? first, IEnumerable<TKey> second, Func<TSource, TKey> keySelector)
+                {
+                    return first is null ? [] : first.IntersectBy(second, keySelector);
                 }
             }
 
@@ -230,16 +253,7 @@ public static class OpenApiOptionsExtensions
     /// <param name="name">The authentication scheme.</param>
     /// <returns>The input options.</returns>
     public static OpenApiOptions WithAuthorizeCheck(this OpenApiOptions options, string name) =>
-        options.WithAuthorizeCheck(() => new() { Reference = new() { Id = name } });
-
-    /// <summary>
-    /// Adds a check for <see cref="Authorization.IAuthorizeData"/> and adds the specified scheme.
-    /// </summary>
-    /// <param name="options">The options.</param>
-    /// <param name="schemeReference">The security scheme reference.</param>
-    /// <returns>The input options.</returns>
-    public static OpenApiOptions WithAuthorizeCheck(this OpenApiOptions options, OpenApiReference schemeReference) =>
-        options.WithAuthorizeCheck(() => new() { Reference = schemeReference });
+        options.WithAuthorizeCheck((_, document) => new(name, document));
 
     /// <summary>
     /// Adds a check for <see cref="Authorization.IAuthorizeData"/> and adds the specified scheme.
@@ -247,44 +261,40 @@ public static class OpenApiOptionsExtensions
     /// <param name="options">The options.</param>
     /// <param name="securityScheme">The authentication scheme.</param>
     /// <returns>The input options.</returns>
-    public static OpenApiOptions WithAuthorizeCheck(this OpenApiOptions options, OpenApiSecurityScheme? securityScheme) =>
-        options.WithAuthorizeCheck(() => securityScheme);
+    public static OpenApiOptions WithAuthorizeCheck(this OpenApiOptions options, OpenApiSecuritySchemeReference? securityScheme) =>
+        options.WithAuthorizeCheck((_, _) => securityScheme);
 
-    private static OpenApiOptions WithAuthorizeCheck(this OpenApiOptions options, Func<OpenApiSecurityScheme?> securitySchemeFactory) => options.AddOperationTransformer(
+    private static OpenApiOptions WithAuthorizeCheck(this OpenApiOptions options, Func<OpenApiOptions, OpenApiDocument?, OpenApiSecuritySchemeReference?> securitySchemeFactory) => options.AddOperationTransformer(
         (operation, context, cancellationToken) =>
         {
             cancellationToken.ThrowIfCancellationRequested();
             if (context.Description.ActionDescriptor.EndpointMetadata.Any(m => m is Authorization.IAuthorizeData))
             {
-                _ = operation.Responses.AddOrUpdate(UnauthorizedKey, _ => new() { Description = UnauthorizedValue }, (_, r) =>
+                operation.Responses = [];
+                _ = operation.Responses.AddOrUpdate(UnauthorizedKey, _ => new OpenApiResponse { Description = UnauthorizedValue }, (_, r) =>
                 {
                     r.Description = UnauthorizedValue;
                     return r;
                 });
-                _ = operation.Responses.AddOrUpdate(ForbiddenKey, _ => new() { Description = ForbiddenValue }, (_, r) =>
+                _ = operation.Responses.AddOrUpdate(ForbiddenKey, _ => new OpenApiResponse { Description = ForbiddenValue }, (_, r) =>
                 {
                     r.Description = ForbiddenValue;
                     return r;
                 });
 
-                if (securitySchemeFactory() is { } securityScheme)
+                if (securitySchemeFactory(options, context.Document) is { } securityScheme)
                 {
-                    IList<string> requirements = [];
+                    var requirements = context.Description.ActionDescriptor.EndpointMetadata
+                        .OfType<Http.Metadata.IScopesMetadata>()
+                        .Aggregate(
+                            new List<string>(),
+                            (scopes, metadata) =>
+                            {
+                                scopes.AddRange(metadata.Scopes);
+                                return scopes;
+                            });
 
-                    if (securityScheme.Type is SecuritySchemeType.OAuth2 or SecuritySchemeType.OpenIdConnect)
-                    {
-                        // gets any scopes
-                        requirements = context.Description.ActionDescriptor.EndpointMetadata
-                            .OfType<Http.Metadata.IScopesMetadata>()
-                            .Aggregate(
-                                new List<string>(),
-                                (scopes, metadata) =>
-                                {
-                                    scopes.AddRange(metadata.Scopes);
-                                    return scopes;
-                                });
-                    }
-
+                    operation.Security ??= [];
                     operation.Security.Add(new() { [securityScheme] = requirements });
                 }
             }
@@ -292,16 +302,28 @@ public static class OpenApiOptionsExtensions
             return Task.CompletedTask;
         });
 
-    private static OpenApiSecurityScheme AddSecurityScheme(this OpenApiOptions options, SecuritySchemeType type, OpenApiReference schemeReference, Action<OpenApiSecurityScheme>? configure = default)
+    private static (OpenApiSecurityScheme Scheme, string Name) AddSecurityScheme(this OpenApiOptions options, SecuritySchemeType type, Action<OpenApiSecurityScheme>? configure = default)
+    {
+        var securityScheme = GetSecurityScheme(type, configure);
+        _ = options.AddSecurityScheme(securityScheme, out var name);
+        return (securityScheme, name);
+    }
+
+    private static OpenApiSecurityScheme AddSecurityScheme(this OpenApiOptions options, SecuritySchemeType type, string name, Action<OpenApiSecurityScheme>? configure = default)
+    {
+        var securityScheme = GetSecurityScheme(type, configure);
+        _ = options.AddSecurityScheme(name, securityScheme);
+        return securityScheme;
+    }
+
+    private static OpenApiSecurityScheme GetSecurityScheme(SecuritySchemeType type, Action<OpenApiSecurityScheme>? configure = default)
     {
         var securityScheme = new OpenApiSecurityScheme
         {
             Type = type,
-            Reference = schemeReference,
         };
 
         configure?.Invoke(securityScheme);
-        _ = options.AddSecurityScheme(securityScheme);
         return securityScheme;
     }
 }

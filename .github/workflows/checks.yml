@@ -33,7 +33,7 @@ jobs:
     - uses: actions/setup-dotnet@v5
       if: steps.cache.outputs.cache-hit != 'true'
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
 
     - name: Restore using dotnet
       if: steps.cache.outputs.cache-hit != 'true'
@@ -60,7 +60,7 @@ jobs:
     - name: Setup .NET
       uses: actions/setup-dotnet@v5
       with:
-        dotnet-version: 9.0.x
+        dotnet-version: 10.0.x
 
     # Test
     - name: Test with dotnet

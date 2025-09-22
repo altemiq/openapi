@@ -9,7 +9,7 @@
     <ImplicitUsings>enable</ImplicitUsings>
 
     <!-- Nullable -->
-    <Nullable>enable</Nullable>
+    <Nullable>disable</Nullable>
 
     <IsPublishable>false</IsPublishable>
     <IsPackable>false</IsPackable>
