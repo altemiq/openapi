@@ -28,7 +28,7 @@ public static class OpenApiExtensibleDictionaryExtensions
         Func<string, TArg, TValue> addValueFactory,
         Func<string, TValue, TArg, TValue> updateValueFactory,
         TArg factoryArgument)
-        where TValue : Interfaces.IOpenApiSerializable
+        where TValue : IOpenApiSerializable
 #if NET9_0_OR_GREATER
         where TArg : allows ref struct
 #endif
@@ -59,7 +59,7 @@ public static class OpenApiExtensibleDictionaryExtensions
         string key,
         Func<string, TValue> addValueFactory,
         Func<string, TValue, TValue> updateValueFactory)
-        where TValue : Interfaces.IOpenApiSerializable
+        where TValue : IOpenApiSerializable
     {
         if (dictionary.TryGetValue(key, out var value))
         {
@@ -87,7 +87,7 @@ public static class OpenApiExtensibleDictionaryExtensions
         string key,
         TValue addValue,
         Func<string, TValue, TValue> updateValueFactory)
-        where TValue : Interfaces.IOpenApiSerializable
+        where TValue : IOpenApiSerializable
     {
         if (dictionary.TryGetValue(key, out var value))
         {

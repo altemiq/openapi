@@ -14,8 +14,8 @@
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     
     <!-- Versioning -->
-    <VerMicrosoft_AspNetCore_OpenApi>9.0.10</VerMicrosoft_AspNetCore_OpenApi>
-    <VerMicrosoft_OpenApi>1.6.17</VerMicrosoft_OpenApi>
+    <VerMicrosoft_AspNetCore_OpenApi>10.0.0</VerMicrosoft_AspNetCore_OpenApi>
+    <VerMicrosoft_OpenApi>2.0.0</VerMicrosoft_OpenApi>
   </PropertyGroup>
 
   <PropertyGroup Label=".NET Analyzers">
