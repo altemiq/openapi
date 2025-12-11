@@ -16,8 +16,8 @@
       },
       "Microsoft.AspNetCore.OpenApi": {
         "type": "Transitive",
-        "resolved": "10.0.0",
-        "contentHash": "0aqIF1t+sA2T62LIeMtXGSiaV7keGQaJnvwwmu+htQdjCaKYARfXAeqp4nHH9y2etpilyZ/tnQzZg4Ilmo/c4Q==",
+        "resolved": "10.0.1",
+        "contentHash": "gMY53EggRIFawhue66GanHcm1Tcd0+QzzMwnMl60LrEoJhGgzA9qAbLx6t/ON3hX4flc2NcEbTK1Z5GCLYHcwA==",
         "dependencies": {
           "Microsoft.OpenApi": "2.0.0"
         }
@@ -25,24 +25,16 @@
       "Microsoft.OpenApi": {
         "type": "Transitive",
         "resolved": "2.0.0",
-        "contentHash": "GGYLfzV/G/ct80OZ45JxnWP7NvMX1BCugn/lX7TH5o0lcVaviavsLMTxmFV2AybXWjbi3h6FF1vgZiTK6PXndw==",
-        "dependencies": {
-          "System.Text.Json": "8.0.5"
-        }
+        "contentHash": "GGYLfzV/G/ct80OZ45JxnWP7NvMX1BCugn/lX7TH5o0lcVaviavsLMTxmFV2AybXWjbi3h6FF1vgZiTK6PXndw=="
       },
-      "System.Text.Json": {
-        "type": "Transitive",
-        "resolved": "8.0.5",
-        "contentHash": "0f1B50Ss7rqxXiaBJyzUu9bWFOO2/zSlifZ/UNMdiIpDYe4cY4LQQicP4nirK1OS31I43rn062UIJ1Q9bpmHpg=="
-      },
-      "Altemiq.AspNetCore.OpenApi": {
+      "aspnetcore.openapi": {
         "type": "Project",
         "dependencies": {
-          "Altemiq.OpenApi": "[2.0.0, )",
-          "Microsoft.AspNetCore.OpenApi": "[10.0.0, )"
+          "Microsoft.AspNetCore.OpenApi": "[10.0.1, )",
+          "OpenApi": "[2.0.0, )"
         }
       },
-      "Altemiq.OpenApi": {
+      "openapi": {
         "type": "Project",
         "dependencies": {
           "Microsoft.OpenApi": "[2.0.0, )"

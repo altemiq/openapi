@@ -4,16 +4,16 @@
     "net10.0": {
       "Altemiq.DotNet.CodingStandard": {
         "type": "Direct",
-        "requested": "[1.0.114, )",
-        "resolved": "1.0.114",
-        "contentHash": "CiiE42206YW6eRd5bm/WtpTxzFbqjzXp1J/6+jULP4Nf3VQB+snPpAhLQENpXGxniJtkA1kcZ1Fl7ZvxCN/hNQ==",
+        "requested": "[1.0.143, )",
+        "resolved": "1.0.143",
+        "contentHash": "SYQhYeAEUh+geqAOniH+7IFa1w9ni2ffY8aaqrfz788Aw4JhBC+Veb5T8GEqwwKBjXULNL824iUbzQDYbpgFJA==",
         "dependencies": {
           "DotNet.ReproducibleBuilds": "1.2.39",
           "DotNet.ReproducibleBuilds.Isolated": "1.2.39",
-          "Meziantou.Analyzer": "2.0.226",
+          "Meziantou.Analyzer": "2.0.257",
           "Microsoft.CodeAnalysis.BannedApiAnalyzers": "3.3.4",
           "Roslynator.Analyzers": "4.14.1",
-          "SonarAnalyzer.CSharp": "10.15.0.120848",
+          "SonarAnalyzer.CSharp": "10.16.1.129956",
           "StyleCop.Analyzers.Unstable": "1.2.0.556"
         }
       },
@@ -25,9 +25,9 @@
       },
       "Microsoft.AspNetCore.OpenApi": {
         "type": "Direct",
-        "requested": "[10.0.0, )",
-        "resolved": "10.0.0",
-        "contentHash": "0aqIF1t+sA2T62LIeMtXGSiaV7keGQaJnvwwmu+htQdjCaKYARfXAeqp4nHH9y2etpilyZ/tnQzZg4Ilmo/c4Q==",
+        "requested": "[10.0.1, )",
+        "resolved": "10.0.1",
+        "contentHash": "gMY53EggRIFawhue66GanHcm1Tcd0+QzzMwnMl60LrEoJhGgzA9qAbLx6t/ON3hX4flc2NcEbTK1Z5GCLYHcwA==",
         "dependencies": {
           "Microsoft.OpenApi": "2.0.0"
         }
@@ -44,8 +44,8 @@
       },
       "Meziantou.Analyzer": {
         "type": "Transitive",
-        "resolved": "2.0.226",
-        "contentHash": "FP4A10jj/YjfrToUs/b4cUfTnIT9QSAMLb/WSq4qpsXOo9/jd+vLGT4o4oKi+qyRxUz5ZFL/MlPThGaKUL+Zrg=="
+        "resolved": "2.0.257",
+        "contentHash": "HADbzZ4rto3boQpWyXIFFc9bxDPviscCXiSQWOTICKD1OJ4gwa9aMfANoQngOk/2en3I9YAHwQ0WXxVMzCTJ+A=="
       },
       "Microsoft.CodeAnalysis.BannedApiAnalyzers": {
         "type": "Transitive",
@@ -59,20 +59,15 @@
       },
       "SonarAnalyzer.CSharp": {
         "type": "Transitive",
-        "resolved": "10.15.0.120848",
-        "contentHash": "1hM3HVRl5jdC/ZBDu+G7CCYLXRGe/QaP01Zy+c9ETPhY7lWD8g8HiefY6sGaH0T3CJ4wAy0/waGgQTh0TYy0oQ=="
+        "resolved": "10.16.1.129956",
+        "contentHash": "XjMarxz00Xc+GD8JGYut1swL0RIw2iwfBhltEITsxsqC/MDLjK+8dk58fPYkS+YPwtdqzkU4VUuSqX3qrN2HYA=="
       },
       "StyleCop.Analyzers.Unstable": {
         "type": "Transitive",
         "resolved": "1.2.0.556",
         "contentHash": "zvn9Mqs/ox/83cpYPignI8hJEM2A93s2HkHs8HYMOAQW0PkampyoErAiIyKxgTLqbbad29HX/shv/6LGSjPJNQ=="
       },
-      "System.Text.Json": {
-        "type": "Transitive",
-        "resolved": "8.0.5",
-        "contentHash": "0f1B50Ss7rqxXiaBJyzUu9bWFOO2/zSlifZ/UNMdiIpDYe4cY4LQQicP4nirK1OS31I43rn062UIJ1Q9bpmHpg=="
-      },
-      "Altemiq.OpenApi": {
+      "openapi": {
         "type": "Project",
         "dependencies": {
           "Microsoft.OpenApi": "[2.0.0, )"
@@ -82,10 +77,7 @@
         "type": "CentralTransitive",
         "requested": "[2.0.0, )",
         "resolved": "2.0.0",
-        "contentHash": "GGYLfzV/G/ct80OZ45JxnWP7NvMX1BCugn/lX7TH5o0lcVaviavsLMTxmFV2AybXWjbi3h6FF1vgZiTK6PXndw==",
-        "dependencies": {
-          "System.Text.Json": "8.0.5"
-        }
+        "contentHash": "GGYLfzV/G/ct80OZ45JxnWP7NvMX1BCugn/lX7TH5o0lcVaviavsLMTxmFV2AybXWjbi3h6FF1vgZiTK6PXndw=="
       }
     }
   }
