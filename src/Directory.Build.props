@@ -14,7 +14,7 @@
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     
     <!-- Versioning -->
-    <VerMicrosoft_AspNetCore_OpenApi>10.0.0</VerMicrosoft_AspNetCore_OpenApi>
+    <VerMicrosoft_AspNetCore_OpenApi>10.0.1</VerMicrosoft_AspNetCore_OpenApi>
     <VerMicrosoft_OpenApi>2.0.0</VerMicrosoft_OpenApi>
   </PropertyGroup>
 
