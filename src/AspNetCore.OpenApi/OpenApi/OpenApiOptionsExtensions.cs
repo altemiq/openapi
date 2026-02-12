@@ -78,7 +78,7 @@ public static class OpenApiOptionsExtensions
         {
             if (document.Servers is null)
             {
-                document.Servers = new List<OpenApiServer> { new() { Url = pathBase } };
+                document.Servers = [new() { Url = pathBase }];
             }
             else
             {
