@@ -128,14 +128,14 @@
           "TUnit.Core": "1.61.15"
         }
       },
-      "Altemiq.AspNetCore.OpenApi": {
+      "aspnetcore.openapi": {
         "type": "Project",
         "dependencies": {
-          "Altemiq.OpenApi": "[2.0.0, )",
-          "Microsoft.AspNetCore.OpenApi": "[10.0.10, )"
+          "Microsoft.AspNetCore.OpenApi": "[10.0.10, )",
+          "OpenApi": "[2.0.0, )"
         }
       },
-      "Altemiq.OpenApi": {
+      "openapi": {
         "type": "Project",
         "dependencies": {
           "Microsoft.OpenApi": "[2.0.0, )"

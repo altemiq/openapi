@@ -21,7 +21,7 @@
         "type": "Direct",
         "requested": "[10.0.9, )",
         "resolved": "10.0.9",
-        "contentHash": "QSmW9zu+4Vj7v84hXcRwss/5DUxzQnYmx90rAKA9jRuRa7WlpbvmNKtqzxX+bfE6qMkFRSS+ykIQ6Q5T66TKqQ=="
+        "contentHash": "adMcVpK2Z/TVVqWCBDtm4hlgudb6j8UjP4X0/LAFnIck4HABq6tY3JYdiifQlqi95DzthzPQmt3EMLEUilPh8w=="
       },
       "Microsoft.AspNetCore.OpenApi": {
         "type": "Direct",
@@ -67,7 +67,7 @@
         "resolved": "1.2.0.556",
         "contentHash": "zvn9Mqs/ox/83cpYPignI8hJEM2A93s2HkHs8HYMOAQW0PkampyoErAiIyKxgTLqbbad29HX/shv/6LGSjPJNQ=="
       },
-      "Altemiq.OpenApi": {
+      "openapi": {
         "type": "Project",
         "dependencies": {
           "Microsoft.OpenApi": "[2.0.0, )"

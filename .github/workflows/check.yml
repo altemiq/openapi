@@ -1,0 +1,70 @@
+name: check
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+env:
+  NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+  DisableImplicitNuGetFallbackFolder: true
+
+jobs:
+  restore:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v7
+          
+    - uses: actions/setup-dotnet@v6
+      with:
+        dotnet-version: 10.0.x
+        cache: true
+        cache-dependency-path: '**/packages.lock.json'
+
+    - name: Run dotnet/restore@local
+      run: |
+        dotnet restore --locked-mode
+
+  run-tests:
+    runs-on: ubuntu-latest
+    needs: restore
+
+    steps:
+    - uses: actions/checkout@v7
+      with:
+        lfs: true
+        
+    - uses: actions/setup-dotnet@v6
+      with:
+        dotnet-version: 10.0.x
+        cache: true
+        cache-dependency-path: '**/packages.lock.json'
+
+    - name: Run dotnet/restore@local
+      run: dotnet restore --locked-mode
+      
+    - name: run dotnet-test@local
+      working-directory: ${{ github.workspace }}/tests/AspNetCore.OpenApi.Tests
+      run: >
+        dotnet run
+        --results-directory ${{ github.workspace }}/coverage/results
+        --coverage
+        --coverage-output-format cobertura
+
+    - uses: danielpalme/ReportGenerator-GitHub-Action@v5
+      with:
+        reports: '${{ github.workspace }}/coverage/results/*.cobertura.xml'
+        targetdir: '${{ github.workspace }}/coverage/reports'
+        reporttypes: 'HtmlInline;Cobertura;MarkdownSummaryGithub'
+        verbosity: 'Verbose'
+
+    - name: Run output/test-results@local
+      run: cat '${{ github.workspace }}/coverage/reports/SummaryGithub.md' >> $GITHUB_STEP_SUMMARY
+
+    - uses: actions/upload-artifact@v7
+      with:
+        name: CoverageReports
+        path: ${{ github.workspace }}/coverage/reports
+        if-no-files-found: ignore

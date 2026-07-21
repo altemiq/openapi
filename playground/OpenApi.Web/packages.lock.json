@@ -27,14 +27,14 @@
         "resolved": "2.0.0",
         "contentHash": "GGYLfzV/G/ct80OZ45JxnWP7NvMX1BCugn/lX7TH5o0lcVaviavsLMTxmFV2AybXWjbi3h6FF1vgZiTK6PXndw=="
       },
-      "Altemiq.AspNetCore.OpenApi": {
+      "aspnetcore.openapi": {
         "type": "Project",
         "dependencies": {
-          "Altemiq.OpenApi": "[2.0.0, )",
-          "Microsoft.AspNetCore.OpenApi": "[10.0.10, )"
+          "Microsoft.AspNetCore.OpenApi": "[10.0.10, )",
+          "OpenApi": "[2.0.0, )"
         }
       },
-      "Altemiq.OpenApi": {
+      "openapi": {
         "type": "Project",
         "dependencies": {
           "Microsoft.OpenApi": "[2.0.0, )"

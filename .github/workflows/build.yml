@@ -1,4 +1,4 @@
-name: .NET build
+name: build
 
 on:
   push:
@@ -7,11 +7,8 @@ on:
   workflow_dispatch:
 
 env:
-  DOTNET_NOLOGO: true
-  DOTNET_CLI_TELEMETRY_OPTOUT: true
-  DOTNET_MULTILEVEL_LOOKUP: false
-  NUGET_XMLDOC_MODE: ''
   NUGET_PACKAGES: ${{ github.workspace }}/.nuget/packages
+  DisableImplicitNuGetFallbackFolder: true
 
 jobs:
   restore:
@@ -23,12 +20,11 @@ jobs:
     - uses: actions/setup-dotnet@v6
       with:
         dotnet-version: 10.0.x
-	cache: true
-	cache-dependency-path: ${{ github.workspace }}/.nuget/packages
+        cache: true
+        cache-dependency-path: '**/packages.lock.json'
 
-    - name: Restore using dotnet
-      run: |
-        dotnet restore --locked-mode
+    - name: Run dotnet/restore@local
+      run: dotnet restore --locked-mode
 
   run-tests:
     runs-on: ubuntu-latest
@@ -42,12 +38,11 @@ jobs:
     - uses: actions/setup-dotnet@v6
       with:
         dotnet-version: 10.0.x
-	cache: true
-	cache-dependency-path: ${{ github.workspace }}/.nuget/packages
+        cache: true
+        cache-dependency-path: '**/packages.lock.json'
 
     - name: Run dotnet/restore@local
-      run: |
-        dotnet restore --locked-mode
+      run: dotnet restore --locked-mode
 
     - name: Run dotnet/test@local
       working-directory: ${{ github.workspace }}/tests/AspNetCore.OpenApi.Tests
@@ -88,8 +83,8 @@ jobs:
     - uses: actions/setup-dotnet@v6
       with:
         dotnet-version: 10.0.x
-	cache: true
-	cache-dependency-path: ${{ github.workspace }}/.nuget/packages
+        cache: true
+        cache-dependency-path: '**/packages.lock.json'
 
     - name: Run dotnet/restore@local
       run: |
