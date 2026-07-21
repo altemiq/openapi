@@ -270,7 +270,7 @@ public static class OpenApiOptionsExtensions
             cancellationToken.ThrowIfCancellationRequested();
             if (context.Description.ActionDescriptor.EndpointMetadata.Any(m => m is Authorization.IAuthorizeData))
             {
-                operation.Responses = [];
+                operation.Responses ??= [];
                 _ = operation.Responses.AddOrUpdate(UnauthorizedKey, _ => new OpenApiResponse { Description = UnauthorizedValue }, (_, r) =>
                 {
                     r.Description = UnauthorizedValue;
