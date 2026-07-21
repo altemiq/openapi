@@ -14,7 +14,7 @@
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     
     <!-- Versioning -->
-    <VerMicrosoft_AspNetCore_OpenApi>10.0.5</VerMicrosoft_AspNetCore_OpenApi>
+    <VerMicrosoft_AspNetCore_OpenApi>10.0.10</VerMicrosoft_AspNetCore_OpenApi>
     <VerMicrosoft_OpenApi>2.0.0</VerMicrosoft_OpenApi>
   </PropertyGroup>
 
@@ -25,5 +25,9 @@
   <PropertyGroup>
     <WarnOnPackingNonPackableProject>false</WarnOnPackingNonPackableProject>
   </PropertyGroup>
+
+  <ItemGroup>
+    <NuGetAuditSuppress Include="https://github.com/advisories/GHSA-v5pm-xwqc-g5wc" />
+  </ItemGroup>
 
 </Project>

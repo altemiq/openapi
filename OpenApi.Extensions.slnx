@@ -1,0 +1,24 @@
+<Solution>
+  <Folder Name="/playground/">
+    <File Path="playground/Directory.Build.props" />
+    <File Path="playground/Directory.Packages.props" />
+    <Project Path="playground/OpenApi.Web/OpenApi.Web.csproj" />
+  </Folder>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="readme.md" />
+  </Folder>
+  <Folder Name="/src/">
+    <File Path="src/Directory.Build.props" />
+    <File Path="src/Directory.Build.targets" />
+    <File Path="src/Directory.Packages.props" />
+    <Project Path="src/AspNetCore.OpenApi/AspNetCore.OpenApi.csproj" />
+    <Project Path="src/OpenApi/OpenApi.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <File Path="tests/Directory.Build.props" />
+    <File Path="tests/Directory.Build.targets" />
+    <File Path="tests/Directory.Packages.props" />
+    <Project Path="tests/AspNetCore.OpenApi.Tests/AspNetCore.OpenApi.Tests.csproj" />
+  </Folder>
+</Solution>
