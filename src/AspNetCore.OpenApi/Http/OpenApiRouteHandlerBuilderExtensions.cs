@@ -37,5 +37,5 @@ public static class OpenApiRouteHandlerBuilderExtensions
     /// <param name="scopes">A collection of scopes to be associated with the endpoint.</param>
     /// <returns>A <see cref="RouteHandlerBuilder"/> that can be used to further customize the endpoint.</returns>
     public static RouteHandlerBuilder WithScopes(this RouteHandlerBuilder builder, params string[] scopes)
-        => WithScopes<RouteHandlerBuilder>(builder, scopes);
+        => builder.WithScopes<RouteHandlerBuilder>(scopes);
 }

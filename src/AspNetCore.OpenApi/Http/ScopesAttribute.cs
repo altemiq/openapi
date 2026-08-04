@@ -13,7 +13,7 @@ namespace Microsoft.AspNetCore.Http;
 /// The OpenAPI specification supports scopes in the security scheme for an endpoint.
 /// </remarks>
 /// <param name="scopes">The scopes associated with the endpoint.</param>
-[AttributeUsage(AttributeTargets.Method | AttributeTargets.Delegate | AttributeTargets.Class, Inherited = false, AllowMultiple = false)]
+[AttributeUsage(AttributeTargets.Method | AttributeTargets.Delegate | AttributeTargets.Class, Inherited = false)]
 [System.Diagnostics.DebuggerDisplay("{ToString(),nq}")]
 public sealed class ScopesAttribute(params string[] scopes) : Attribute, Metadata.IScopesMetadata
 {

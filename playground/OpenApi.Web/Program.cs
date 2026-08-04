@@ -18,7 +18,7 @@ builder.Services.AddControllers();
 builder.Services.AddOpenApi(options =>
 {
     _ = options.SetInfo("API");
-    var (_, name) = options.AddOAuth2(
+    var results = options.AddOAuth2(
         new()
         {
             Password = new()
@@ -32,7 +32,7 @@ builder.Services.AddOpenApi(options =>
                 },
             },
         });
-    _ = options.WithAuthorizeCheck(name);
+    _ = options.WithAuthorizeCheck(results.Name);
     _ = options.UsePathBase(PathBase);
 });
 
@@ -47,7 +47,7 @@ if (app.Environment.IsDevelopment())
 
 app.UsePathBase(PathBase);
 
-app
+_ = app
     .MapGet($"minimal/{nameof(Altemiq.OpenApi.Web.WeatherForecast)}", Altemiq.OpenApi.Web.WeatherForecast.Get)
     .RequireAuthorization()
     .WithScopes("first", "second");

@@ -21,9 +21,44 @@ public class OpenApiOptionsExtensionsTests
     }
 
     [Test]
+    public async Task SetTitleAndVersion()
+    {
+        const string Name = nameof(Name);
+        await TestTitle(Name, options => options.SetInfo(Name, DocumentName));
+    }
+
+    [Test]
     public async Task AddOpenIdConnect()
     {
-        Microsoft.OpenApi.OpenApiDocument document = await GetOpenApiDocument(options => options.AddOpenIdConnect("http://localhost"));
+        Microsoft.OpenApi.OpenApiDocument document = await GetOpenApiDocument(options => _ = options.AddOpenIdConnect("http://localhost"));
+        _ = await Assert.That(document.Components).IsNotNull()
+            .And.Member(x => x.SecuritySchemes, x => x.IsNotNull());
+    }
+
+    [Test]
+    public async Task AddSchema()
+    {
+        string name = default;
+        Microsoft.OpenApi.OpenApiDocument document = await GetOpenApiDocument(options =>
+        {
+            var schema = new Microsoft.OpenApi.OpenApiSecurityScheme { Type = Microsoft.OpenApi.SecuritySchemeType.ApiKey };
+            _ = options.AddSecurityScheme(schema, out name);
+        });
+        
+        _ = await Assert.That(document.Components).IsNotNull()
+            .And.Member(x => x.SecuritySchemes, x => x.IsNotNull());
+        _ = await Assert.That(name).IsNotNull();
+    }
+
+    [Test]
+    public async Task AddSchemaWithName()
+    {
+        Microsoft.OpenApi.OpenApiDocument document = await GetOpenApiDocument(options =>
+        {
+            var schema = new Microsoft.OpenApi.OpenApiSecurityScheme { Type = Microsoft.OpenApi.SecuritySchemeType.ApiKey };
+            _ = options.AddSecurityScheme("SchemaName", schema);
+        });
+        
         _ = await Assert.That(document.Components).IsNotNull()
             .And.Member(x => x.SecuritySchemes, x => x.IsNotNull());
     }
