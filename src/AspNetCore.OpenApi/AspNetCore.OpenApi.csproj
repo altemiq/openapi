@@ -31,4 +31,50 @@
     <ProjectReference Include="..\OpenApi\OpenApi.csproj" />
   </ItemGroup>
 
+  <Target Name="_InterceptAndStopPacking"
+          BeforeTargets="GenerateNuspec"
+          Condition=" '$(NuspecFile)' == '' ">
+    <PropertyGroup>
+      <ContinuePackingAfterGeneratingNuspec>false</ContinuePackingAfterGeneratingNuspec>
+    </PropertyGroup>
+    <Message Importance="high" Text="[Pack Intercept] Setting ContinuePackingAfterGeneratingNuspec to false to perform file modifications." />
+  </Target>
+
+  <Target Name="_ModifyNuspecAndResumePacking"
+          AfterTargets="GenerateNuspec"
+          Condition=" '$(ContinuePackingAfterGeneratingNuspec)' == 'false' ">
+
+    <PropertyGroup>
+      <ResolvedNuspecFile Condition="'%(NuGetPackOutput.Extension)' == '.nuspec'">%(NuGetPackOutput.Identity)</ResolvedNuspecFile>
+      <ResolvedNuspecFile Condition="'$(ResolvedNuspecFile)' == ''">$(NuspecOutputFile)</ResolvedNuspecFile>
+    </PropertyGroup>
+
+    <!-- Guard check to make sure the file was successfully matched and exists on disk -->
+    <Error Condition="'$(ResolvedNuspecFile)' == '' or !Exists('$(ResolvedNuspecFile)')"
+           Text="[Pack Intercept] Could not locate the automatically generated .nuspec file. Path resolved: '$(ResolvedNuspecFile)'" />
+
+    <Message Importance="high" Text="[Pack Intercept] Target file located at: $(ResolvedNuspecFile)" />
+
+    <!-- 
+      Example Modification: We utilize the built-in XmlPoke task to alter the package metadata.
+      Note: NuSpec files use a schema namespace that must be declared in the Namespaces parameter.
+    -->
+    <XmlPoke XmlInputPath="$(ResolvedNuspecFile)"
+             Query="//*[local-name()='dependency' and @id='Altemiq.OpenApi']/@version"
+             Value="[$(VerMicrosoft_OpenApi),$(VerMicrosoft_OpenApi_Max))" />
+
+    <Message Importance="high" Text="[Pack Intercept] Version replacement for Altemiq.OpenApi complete. Resuming pack lifecycle." />
+
+    <!-- 
+      We recursively invoke the standard 'Pack' target.
+      We override 'NuspecFile' to target our updated manifest and toggle 'ContinuePackingAfterGeneratingNuspec' 
+      to true to let the compression step run to completion.
+    -->
+    <MSBuild Projects="$(MSBuildProjectFile)"
+             Targets="Pack"
+             Properties="NuspecFile=$(ResolvedNuspecFile);
+                         ContinuePackingAfterGeneratingNuspec=true;
+                         IncludeProjectReferences=false;" />
+  </Target>
+
 </Project>
