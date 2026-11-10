@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Altemiq.OpenApi.Web;
+namespace OpenApi.Web;
 
 /// <summary>
 /// The weather forecast.

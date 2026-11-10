@@ -10,7 +10,7 @@ public class OpenApiRouteHandlerBuilderTests
         var builder = new Builder.RouteHandlerBuilder([]);
         await Assert.That(builder.WithScopes("first", "second")).IsNotNull();
     }
-    
+
     [Test]
     public async Task AddScopesFromInterface()
     {

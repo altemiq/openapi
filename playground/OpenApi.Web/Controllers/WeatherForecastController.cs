@@ -4,7 +4,7 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-namespace Altemiq.OpenApi.Web.Controllers;
+namespace OpenApi.Web.Controllers;
 
 using Microsoft.AspNetCore.Mvc;
 

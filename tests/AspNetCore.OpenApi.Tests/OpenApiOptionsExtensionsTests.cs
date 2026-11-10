@@ -44,7 +44,7 @@ public class OpenApiOptionsExtensionsTests
             var schema = new Microsoft.OpenApi.OpenApiSecurityScheme { Type = Microsoft.OpenApi.SecuritySchemeType.ApiKey };
             _ = options.AddSecurityScheme(schema, out name);
         });
-        
+
         _ = await Assert.That(document.Components).IsNotNull()
             .And.Member(x => x.SecuritySchemes, x => x.IsNotNull());
         _ = await Assert.That(name).IsNotNull();
@@ -58,7 +58,7 @@ public class OpenApiOptionsExtensionsTests
             var schema = new Microsoft.OpenApi.OpenApiSecurityScheme { Type = Microsoft.OpenApi.SecuritySchemeType.ApiKey };
             _ = options.AddSecurityScheme("SchemaName", schema);
         });
-        
+
         _ = await Assert.That(document.Components).IsNotNull()
             .And.Member(x => x.SecuritySchemes, x => x.IsNotNull());
     }
@@ -83,11 +83,8 @@ public class OpenApiOptionsExtensionsTests
         {
             // get the keyed service
             Type documentServiceType = typeof(OpenApiOptions).Assembly.GetType("Microsoft.AspNetCore.OpenApi.OpenApiDocumentService") ?? throw new InvalidOperationException();
-            object service = serviceProvider.GetKeyedServices(documentServiceType, documentName).First();
-
-            System.Reflection.MethodInfo method = documentServiceType.GetMethod("GetOpenApiDocumentAsync", [typeof(CancellationToken)])!;
-            Task<Microsoft.OpenApi.OpenApiDocument> task = (Task<Microsoft.OpenApi.OpenApiDocument>)method.Invoke(service, [CancellationToken.None])!;
-
+            System.Reflection.MethodInfo method = documentServiceType.GetMethod("GetOpenApiDocumentAsync", [typeof(CancellationToken)]);
+            Task<Microsoft.OpenApi.OpenApiDocument> task = (Task<Microsoft.OpenApi.OpenApiDocument>)method.Invoke(serviceProvider.GetKeyedService(documentServiceType, documentName), [CancellationToken.None]);
             return await task;
         }
     }

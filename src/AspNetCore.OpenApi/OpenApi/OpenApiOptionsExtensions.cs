@@ -4,22 +4,24 @@
 // </copyright>
 // -----------------------------------------------------------------------
 
-#pragma warning disable SA1200
-using OpenApiSecuritySchemeAndName = (Microsoft.OpenApi.OpenApiSecurityScheme Scheme, string Name);
-#pragma warning restore SA1200
-
 namespace Microsoft.AspNetCore.OpenApi;
 
 using Microsoft.OpenApi;
 using Microsoft.OpenApi.Models;
 
-#pragma warning disable SA1101, RCS1263
+using OpenApiSecuritySchemeAndName = (Microsoft.OpenApi.OpenApiSecurityScheme Scheme, string Name);
 
 /// <summary>
 /// The <see cref="OpenApiOptions"/> extensions.
 /// </summary>
 public static class OpenApiOptionsExtensions
 {
+    private const string UnauthorizedValue = "User is not authorised";
+    private const string ForbiddenValue = "User access to resource is forbidden";
+
+    private static readonly string UnauthorizedKey = Http.StatusCodes.Status401Unauthorized.ToString(System.Globalization.CultureInfo.InvariantCulture);
+    private static readonly string ForbiddenKey = Http.StatusCodes.Status403Forbidden.ToString(System.Globalization.CultureInfo.InvariantCulture);
+
     /// <content>
     /// The <see cref="OpenApiOptions"/> extensions.
     /// </content>
@@ -309,12 +311,6 @@ public static class OpenApiOptionsExtensions
             return securityScheme;
         }
     }
-
-    private const string UnauthorizedValue = "User is not authorised";
-    private const string ForbiddenValue = "User access to resource is forbidden";
-
-    private static readonly string UnauthorizedKey = Http.StatusCodes.Status401Unauthorized.ToString(System.Globalization.CultureInfo.InvariantCulture);
-    private static readonly string ForbiddenKey = Http.StatusCodes.Status403Forbidden.ToString(System.Globalization.CultureInfo.InvariantCulture);
 
     private static OpenApiSecurityScheme GetSecurityScheme(SecuritySchemeType type, Action<OpenApiSecurityScheme>? configure = default)
     {
