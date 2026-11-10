@@ -37,7 +37,7 @@
       "openapi": {
         "type": "Project",
         "dependencies": {
-          "Microsoft.OpenApi": "[2.12.2, )"
+          "Microsoft.OpenApi": "[2.12.2, 3.0.0)"
         }
       }
     }

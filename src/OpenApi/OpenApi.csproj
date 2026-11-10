@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.OpenApi" />
+    <PackageReference Include="Microsoft.OpenApi" VersionOverride="$(VerMicrosoft_OpenApi_Range)" />
   </ItemGroup>
 
 </Project>

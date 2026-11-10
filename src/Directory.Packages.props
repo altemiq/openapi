@@ -12,9 +12,4 @@
     <GlobalPackageReference Include="Altemiq.SemanticVersioning.MSBuild" Version="10.0.9" />
   </ItemGroup>
 
-  <ItemGroup>
-    <PackageVersion Include="Microsoft.AspNetCore.OpenApi" Version="$(VerMicrosoft_AspNetCore_OpenApi)" />
-    <PackageVersion Include="Microsoft.OpenApi" Version="$(VerMicrosoft_OpenApi)" />
-  </ItemGroup>
-
 </Project>

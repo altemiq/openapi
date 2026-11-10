@@ -24,7 +24,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.OpenApi" />
+    <PackageReference Include="Microsoft.AspNetCore.OpenApi" VersionOverride="$(VerMicrosoft_AspNetCore_OpenApi)" />
   </ItemGroup>
 
   <ItemGroup>
@@ -61,7 +61,7 @@
     -->
     <XmlPoke XmlInputPath="$(ResolvedNuspecFile)"
              Query="//*[local-name()='dependency' and @id='Altemiq.OpenApi']/@version"
-             Value="[$(VerMicrosoft_OpenApi),$(VerMicrosoft_OpenApi_Max))" />
+             Value="$(VerMicrosoft_OpenApi_Range)" />
 
     <Message Importance="high" Text="[Pack Intercept] Version replacement for Altemiq.OpenApi complete. Resuming pack lifecycle." />
 

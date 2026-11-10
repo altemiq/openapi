@@ -17,6 +17,7 @@
     <VerMicrosoft_AspNetCore_OpenApi>10.0.14</VerMicrosoft_AspNetCore_OpenApi>
     <VerMicrosoft_OpenApi>2.12.2</VerMicrosoft_OpenApi>
     <VerMicrosoft_OpenApi_Max>3.0.0</VerMicrosoft_OpenApi_Max>
+    <VerMicrosoft_OpenApi_Range>[$(VerMicrosoft_OpenApi),$(VerMicrosoft_OpenApi_Max))</VerMicrosoft_OpenApi_Range>
   </PropertyGroup>
 
   <PropertyGroup Label=".NET Analyzers">
