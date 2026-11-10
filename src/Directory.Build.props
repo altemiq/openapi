@@ -2,7 +2,6 @@
 
   <PropertyGroup>
     <NeutralLanguage>en</NeutralLanguage>
-    <LangVersion>preview</LangVersion>
     <ImplicitUsings>enable</ImplicitUsings>
 
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
@@ -14,18 +13,10 @@
     <RestorePackagesWithLockFile>true</RestorePackagesWithLockFile>
     
     <!-- Versioning -->
-    <VerMicrosoft_AspNetCore_OpenApi>11.0.0-rc.3.26522.148</VerMicrosoft_AspNetCore_OpenApi>
-    <VerMicrosoft_OpenApi>3.10.2</VerMicrosoft_OpenApi>
+    <VerMicrosoft_AspNetCore_OpenApi>11.0.0</VerMicrosoft_AspNetCore_OpenApi>
+    <VerMicrosoft_OpenApi>3.11.0</VerMicrosoft_OpenApi>
     <VerMicrosoft_OpenApi_Max>4.0.0</VerMicrosoft_OpenApi_Max>
     <VerMicrosoft_OpenApi_Range>[$(VerMicrosoft_OpenApi),$(VerMicrosoft_OpenApi_Max))</VerMicrosoft_OpenApi_Range>
-  </PropertyGroup>
-
-  <PropertyGroup Label=".NET Analyzers">
-    <AnalysisLevel>preview</AnalysisLevel>
-  </PropertyGroup>
-
-  <PropertyGroup>
-    <WarnOnPackingNonPackableProject>false</WarnOnPackingNonPackableProject>
   </PropertyGroup>
 
   <ItemGroup>
